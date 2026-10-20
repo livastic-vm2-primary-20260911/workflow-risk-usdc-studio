@@ -72,3 +72,11 @@ test("input change invalidates all candidate downloads",()=>{
  assert.match(app,/download\.disabled=true/);
  assert.match(app,/if\(!current\|\|!current\.candidateRecords\)return/);
 });
+
+test("optional 49 USDC inquiry uses preexisting single-owner form without automatic upload",()=>{
+ assert.ok(html.includes("1FAIpQLSe_N8anCGUDmWdNZLnGwFRfhYaaCsB18BKdYd_VsFZp1xWm3g/viewform"));
+ assert.ok(html.includes("existing one-owner optional buyer inquiry form"));
+ assert.ok(html.includes("completely fictional example"));
+ assert.ok(html.includes("not private account exports"));
+ assert.ok(!html.includes("pay now"));
+});
