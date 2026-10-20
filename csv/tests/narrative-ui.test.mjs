@@ -53,7 +53,7 @@ test("real UI events on fictional local input only, no network, no wallet", asyn
    els.get("example").listeners.click();
    assert.match(els.get("source").value,/Purchase of 1\.4324467000 SOL/);
    els.get("analyze").listeners.click();
-   assert.match(els.get("state").textContent,/2 review-only candidates/);
+   assert.match(els.get("state").textContent,/3 review-only candidates/);
    assert.equal(els.get("download").disabled,false);
    assert.equal(els.get("rows").children.length,4);
    assert.ok(!els.get("summary").textContent.includes("FICT-A01"));
@@ -79,4 +79,20 @@ test("optional 49 USDC inquiry uses preexisting single-owner form without automa
  assert.ok(html.includes("completely fictional example"));
  assert.ok(html.includes("not private account exports"));
  assert.ok(!html.includes("pay now"));
+});
+
+test("buyer guide contextualizes Wealthsimple-like data without vendor endorsement or tax fiction",()=>{
+ assert.match(html,/Wealthsimple-style description extraction guide/);
+ assert.match(html,/this exact obstacle/);
+ assert.match(html,/for CAD 300/);
+ assert.match(html,/ignored and flagged/);
+ assert.match(html,/no official Wealthsimple schema/);
+});
+test("agent catalog discloses trailing context is ignored and never a cost basis",()=>{
+ const cat=JSON.parse(readFileSync(new URL("../catalog.json",import.meta.url),"utf8"));
+ const info=cat.freeNarrativeInspector.trailingContext;
+ assert.equal(info.trailingDetailsNotInterpreted,true);
+ assert.equal(info.unsupportedReversalsRejected,true);
+ assert.equal(info.notPriceOrFeeEstimation,true);
+ assert.equal(info.sourcePrivateFieldsNeverDownloaded,true);
 });

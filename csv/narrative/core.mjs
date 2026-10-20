@@ -7,7 +7,12 @@ import {parseCSV, validateCSVText, MAX_CSV_DATA_ROWS} from "../local.mjs";
 
 const problem = code => {throw new Error(code)};
 export const MAX_DESCRIPTION_CHARS = 512;
-const NARRATIVE = /^(Purchase of|Sale of|Bought|Sold) (0|[1-9][0-9]{0,13})(?:\.([0-9]{1,18}))? ([A-Za-z][A-Za-z0-9]{1,11})$/i;
+// Matches only a purchase/sale prefix. A trailing freeform description is never
+// used for any derived financial fact, and is called out as an unresolved
+// REVIEW_REQUIRED suffix rather than silently dropped.
+const NARRATIVE = /^(Purchase of|Sale of|Bought|Sold) (0|[1-9][0-9]{0,13})(?:\.([0-9]{1,18}))? ([A-Za-z][A-Za-z0-9]{1,11})(?:[ \t]+(\S[^\r\n]*))?$/i;
+const SAFE_SUFFIX_PREFIX = /^(?:for|at|via|on|fee|price|total|order|reference|ref)\b/i;
+const UNSAFE_SUFFIX = /\b(?:refund|refunded|cancel(?:led|ed|lation)?|reversal|reversed|revert|failed|void|voided|chargeback|error|duplicate|sold|bought|purchase|sale|return|returned|compensat(?:e|ion))\b/i;
 const VALID_SYMBOL = /^[A-Z][A-Z0-9]{1,11}$/;
 const FORMULA_LIKE = /^[=+@-]/;
 
@@ -23,10 +28,20 @@ export function parseDescription(raw) {
   if (!VALID_SYMBOL.test(symbol)) return {ok:false,code:"SYMBOL_NOT_UPPERCASE"};
   const decimal=m[2]+(m[3]!==undefined?"."+m[3]:"");
   if (/^0(?:\.0+)?$/.test(decimal)) return {ok:false,code:"ZERO_QUANTITY"};
+  const trailing=(m[5]||"").trim();
+  if (trailing) {
+    // Reversals/cancellations or a second action are NOT safe to classify as
+    // purchases, and nonstandard tails may be unrelated journal semantics.
+    if (trailing.length>160) return {ok:false,code:"TRAILING_CONTEXT_TOO_LONG"};
+    if (UNSAFE_SUFFIX.test(trailing)) return {ok:false,code:"REVERSAL_OR_MULTIPLE_ACTIONS"};
+    if (!SAFE_SUFFIX_PREFIX.test(trailing)) return {ok:false,code:"UNSUPPORTED_TRAILING_CONTEXT"};
+  }
   const v=m[1].toLowerCase();
   return {
     ok:true, kind:v==="sale of"||v==="sold"?"SELL_CANDIDATE":"BUY_CANDIDATE",
-    quantity:decimal, symbol, reviewRequired:true, code:"NARRATIVE_CANDIDATE_ONLY"
+    quantity:decimal, symbol, reviewRequired:true,
+    trailingContextIgnored:Boolean(trailing),
+    code:trailing?"TRAILING_CONTEXT_IGNORED_REVIEW_REQUIRED":"NARRATIVE_CANDIDATE_ONLY"
   };
 }
 
@@ -57,6 +72,7 @@ export function inspectNarrativeCSV(text,columnName="Description") {
       record.kind=item.kind;
       record.quantity=item.quantity;
       record.symbol=item.symbol;
+      record.trailingContextIgnored=item.trailingContextIgnored;
     } else {
       reasonTotals[item.code]=(reasonTotals[item.code]||0)+1;
     }
@@ -73,6 +89,7 @@ export function inspectNarrativeCSV(text,columnName="Description") {
       "CANDIDATES ONLY. No Koinly import, quote asset, paid value, fees, tax basis, income, or import guarantee.",
       "Asset tickers alone do not prove the blockchain, token contract, or receipt.",
       "No date/timezone, source ID, fee or transfer assumptions; reconcile originals manually.",
+      "If an explicit sentence has a trailing note, that note was IGNORED, never priced/parsed; check reversals, fees and context from the original.",
       "The optional review CSV copies neither the raw description nor unrelated source columns.",
       "Do not share private exchange exports or real wallet/account records without authorization."
     ]
@@ -94,7 +111,10 @@ export function candidateReviewCSV(report) {
        !VALID_SYMBOL.test(row.symbol)) problem("UNSAFE_LOCAL_REPORT_DATA");
     output.push([
       String(row.sourceRecord),escapeCSV(row.kind),escapeCSV(row.quantity),
-      escapeCSV(row.symbol),escapeCSV("REVIEW_REQUIRED_NOT_KOINLY_IMPORT")
+      escapeCSV(row.symbol),escapeCSV(
+        row.trailingContextIgnored?"REVIEW_TRAILING_CONTEXT_IGNORED_NOT_KOINLY_IMPORT":
+          "REVIEW_REQUIRED_NOT_KOINLY_IMPORT"
+      )
     ].join(","));
   }
   return output.join("\r\n")+"\r\n";

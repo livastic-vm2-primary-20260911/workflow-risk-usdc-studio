@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#10251f">
 <meta name="robots" content="index,follow">
-<meta name="description" content="Free browser-local crypto CSV narrative inspector. Review amount and token ticker candidates buried in exchange descriptions. No upload, wallet, tax guesswork or forced payment.">
+<meta name="description" content="Free local crypto CSV description amount extractor for Wealthsimple-style and Koinly mapping triage. Parse only quantity/ticker candidates; flag ignored trailing notes, never invent fees, tax basis or prices. No upload, wallet or signup.">
 <link rel="canonical" href="https://livastic-vm2-primary-20260911.github.io/workflow-risk-usdc-studio/csv/narrative/">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Crypto CSV Narrative Inspector — browser-local candidates">
 <meta property="og:description" content="Strict, local-only parsing of descriptions such as Purchase of 1.4324467000 SOL. No made-up dates, fees, cost basis or import claims.">
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'; frame-src 'none'; upgrade-insecure-requests">
-<title>Crypto CSV Narrative Inspector — Free, Private, Review-Only</title>
+<title>Crypto CSV Description Amount Extractor — Koinly/Wealthsimple-Style Review</title>
 <link rel="stylesheet" href="../../style.css">
 <link rel="stylesheet" href="../style.css">
 <link rel="stylesheet" href="./style.css">
@@ -58,7 +58,7 @@
 <div class="section-heading"><div>
 <p class="eyebrow">EXPLICIT GRAMMAR ONLY</p>
 <h2>Inspect descriptions without uploading.</h2>
-<p>Accepts exactly “Purchase of N SYMBOL”, “Sale of N SYMBOL”, “Bought N SYMBOL” or “Sold N SYMBOL”. Never guesses cost basis, fiat spent, date/timezone or a token contract. Limited to 32KB, 500 data records and 40 columns. Ambiguous rows remain unparsed; source row order is retained.</p></div></div>
+<p>Looks for a strict “Purchase of N SYMBOL”, “Sale of N SYMBOL”, “Bought N SYMBOL” or “Sold N SYMBOL” prefix. Recognized trailing price/reference text is <strong>ignored and explicitly marked for manual review</strong>; reversals or second actions are rejected. Never guesses cost basis, fiat spent, date/timezone or a token contract. Limited to 32KB, 500 data records and 40 columns. Ambiguous rows remain unparsed; source row order is retained.</p></div></div>
 <div class="form-grid">
 <div class="form-col">
 <div class="field-row"><label for="source">Crypto CSV (browser-local input)</label><button id="example" type="button" class="text-btn">Load FICTIONAL example</button></div>
@@ -92,10 +92,21 @@
 <p class="eyebrow">THREE DISTINCT OPTIONS · ONE REAL OWNER</p>
 <h2>Get a candidate, then verify its facts.</h2>
 <div class="tiles">
-<article class="tile"><span class="tile-num">01 · FREE, LOCAL</span><h3>Understand a narrative</h3><p>Get exact decimal and uppercase ticker candidates for simple, unambiguous purchase or sale statements. Rejects formulas, duplicate headers and partial narratives rather than inventing missing fields.</p></article>
+<article class="tile"><span class="tile-num">01 · FREE, LOCAL</span><h3>Understand a narrative</h3><p>Get exact decimal and uppercase ticker candidates for explicit purchase or sale prefixes, even when an extra “for CAD” note follows. Trailing details are ignored and flagged, while reversals, formulas, duplicate headers and unsupported narratives are rejected instead of inventing missing fields.</p></article>
 <article class="tile"><span class="tile-num">02 · FREE, LOCAL</span><h3>Build a real import candidate</h3><p>Separately verify original transaction dates, gross quote amounts, fees and asset identity. The same owner's <a href="https://livastic-vm1-primary.github.io/paperpilot-tools/koinly-column-mapper.html">free Koinly column mapper</a> and <a href="https://livastic-vm3-primary-tmp-260920.github.io/crypto-csv-rescue/koinly-preflight/">independent format preflight</a> can help once complete source fields are available. Neither is tax advice.</p></article>
 <article class="tile"><span class="tile-num">03 · OPTIONAL MANUAL SERVICE</span><h3>Need a scoped CSV mapping?</h3><p>One owner separately offers a <strong>nonbinding 49 Base Circle USDC</strong> technical CSV rescue hypothesis for no more than 50 safely redacted, authorized records under a written scope. To inquire, use the <a href="https://docs.google.com/forms/d/e/1FAIpQLSe_N8anCGUDmWdNZLnGwFRfhYaaCsB18BKdYd_VsFZp1xWm3g/viewform" target="_blank" rel="noopener noreferrer">existing one-owner optional buyer inquiry form</a> or <a href="mailto:onecursor1@gmail.com?subject=Crypto%20CSV%20narrative%20mapping%20scope">email column names and a nonsecret error description</a>, not private account exports. A response, agreement or purchase has not been assumed. Exact price, data handling and refund terms require separate acceptance.</p></article>
 </div>
+</section>
+<section class="shell how" aria-label="Wealthsimple-style description extraction guide" id="wealthish-help">
+<p class="eyebrow">A REALISTIC USE CASE · FICTIONAL VALUES ONLY</p>
+<h2>When an export embeds “Purchase of … SOL” in Description.</h2>
+<p>Some crypto exports use a narrative description instead of a separate asset and quantity column. A historical public user question about Wealthsimple-style crypto CSVs describes this exact obstacle. The example below is <strong>fictional</strong>; no official Wealthsimple schema, platform endorsement, current import restriction or user relationship is claimed.</p>
+<div class="tiles">
+<article class="tile"><span class="tile-num">A · SOURCE ON YOUR DEVICE</span><h3>Find the narrative column</h3><p>Open a copy of your own authorized CSV in this browser. Choose the description header and run local inspection. Nothing is sent to the site's server.</p></article>
+<article class="tile"><span class="tile-num">B · DERIVED CANDIDATE ONLY</span><h3>Review every suffix</h3><p>“Purchase of 1.4324467000 SOL for CAD 300” yields a BUY_CANDIDATE of 1.4324467000 SOL, but the CAD phrase is <strong>ignored and flagged</strong>, not taken as price or fees. Reversals and second actions are NOT_PARSED.</p></article>
+<article class="tile"><span class="tile-num">C · ORIGINAL RECORDS DECIDE</span><h3>Complete the real import elsewhere</h3><p>Review source date/timezone, original paid and received quantities, fees, transfers and token identity with authentic exchange records. Only then use the official Koinly import template and independent format checks. This tool does not produce a complete trade or tax form.</p></article>
+</div>
+<p class="micro">This is a demonstration of one technical parsing issue only, not a prediction about the current support status of any exchange. Use vendor-maintained official instructions as the source of import requirements.</p>
 </section>
 <section class="shell trust">
 <p class="eyebrow">WHAT THIS DOES NOT DO</p>

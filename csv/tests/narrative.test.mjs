@@ -10,7 +10,7 @@ const typical=src([
  '"Bought 3 ETH","2026-10-03"',
  '"Sold 4 XRP","2026-10-04"',
 ]);
-const badRaw=['Purchase of 1 SOL for CAD30','Purchase of 1 SOL and 1 BTC',
+const badRaw=['Purchase of 1 SOL and 1 BTC',
  'Purchase of 1e40 ETH','Purchase of 1,500 ETH','Sale of -1 BTC',
  'Sale of 1. SOL','Bought 1.1234567890123456789 ETH',
  'Purchase of 0004 SOL','Purchase of $3 SOL','Purchase of 2 SOL!',
@@ -196,4 +196,66 @@ test("help links refer to existing one-owner products, not a second seller",()=>
  assert.ok(html.includes("livastic-vm1-primary.github.io/paperpilot-tools/koinly-column-mapper.html"));
  assert.ok(html.includes("livastic-vm3-primary-tmp-260920.github.io/crypto-csv-rescue/koinly-preflight/"));
  assert.ok(html.includes("nonbinding 49 Base Circle USDC"));
+});
+
+// Real-world descriptions can contain independent trailing fee/price notes.
+// Preserve only explicit prefixes and mark every ignored tail for manual audit.
+test("explicit quantity/ticker prefix with trailing price note is CANDIDATE, not a verified price",()=>{
+ const out=parseDescription("Purchase of 1.4324467000 SOL for 200 CAD");
+ assert.equal(out.ok,true);
+ assert.equal(out.quantity,"1.4324467000");
+ assert.equal(out.symbol,"SOL");
+ assert.equal(out.kind,"BUY_CANDIDATE");
+ assert.equal(out.code,"TRAILING_CONTEXT_IGNORED_REVIEW_REQUIRED");
+ assert.equal(out.trailingContextIgnored,true);
+ assert.equal(JSON.stringify(out).includes("200 CAD"),false);
+});
+test("trailing reference note may be kept as a candidate, but is never exported",()=>{
+ const out=parseDescription("Sold 2.400000 BTC reference PRIVATE-INVOICE-4423");
+ assert.equal(out.ok,true);
+ assert.equal(out.kind,"SELL_CANDIDATE");
+ assert.equal(out.trailingContextIgnored,true);
+ assert.ok(!JSON.stringify(out).includes("PRIVATE-INVOICE-4423"));
+});
+test("cancellation, chargeback, second action never become a buy or sell",()=>{
+ for(const original of [
+  "Purchase of 1 ETH for CAD 100 REFUNDED",
+  "Purchase of 1 ETH for CAD 100 chargeback",
+  "Bought 1 ETH for 100 USDC and sold 2 BTC",
+  "Sale of 0.01 BTC reversed",
+  "Sold 2 SOL reference R1 cancellation",
+ ]) {
+  const record=parseDescription(original);
+  assert.equal(record.ok,false,original);
+  assert.equal(record.code,"REVERSAL_OR_MULTIPLE_ACTIONS",original);
+ }
+});
+test("unknown suffix and ambiguous cropped quote do not get falsely classified",()=>{
+ for(const v of [
+  "Purchase of 1.4324467000 SOL...",
+  "Purchase of 1 ETH unknown-transaction-state",
+  "Sale of 1 BTC manually corrected",
+  "Bought 1 ETH\nRefund 1 ETH"
+ ]) {
+  assert.equal(parseDescription(v).ok,false,v);
+ }
+});
+test("candidate review download marks ignored suffix and excludes cost or account refs",()=>{
+ const raw='Description,When,Account\n"Purchase of 1.4324467000 SOL for 999 CAD",2026-10-18,UNIQUE-SECRET-REFERENCE-8128';
+ const report=inspectNarrativeCSV(raw);
+ const csv=candidateReviewCSV(report);
+ assert.equal(report.records[0].code,"TRAILING_CONTEXT_IGNORED_REVIEW_REQUIRED");
+ assert.equal(report.records[0].trailingContextIgnored,true);
+ assert.ok(csv.includes("REVIEW_TRAILING_CONTEXT_IGNORED_NOT_KOINLY_IMPORT"));
+ for(const forbidden of ["999 CAD","2026-10-18","UNIQUE-SECRET","Purchase of"]){
+  assert.ok(!csv.includes(forbidden),forbidden);
+  assert.ok(!JSON.stringify(report).includes(forbidden),forbidden);
+ }
+});
+test("extra-suffix candidate still requires user review and cannot auto-import",()=>{
+ const r=inspectNarrativeCSV('Description\n"Bought 1 ETH at 3,001 USD"');
+ assert.equal(r.candidateRecords,1);
+ assert.equal(r.records[0].code,"TRAILING_CONTEXT_IGNORED_REVIEW_REQUIRED");
+ assert.ok(r.limitations.some(v=>v.includes("IGNORED")));
+ assert.ok(candidateReviewCSV(r).includes("NOT_KOINLY_IMPORT"));
 });

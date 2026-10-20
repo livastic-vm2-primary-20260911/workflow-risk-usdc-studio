@@ -53,3 +53,12 @@ derived candidate fields and row positions, no raw descriptions/account refs.
 Missing or ambiguous records remain flagged, never invented. Distinct from
 the existing 0.005 Base USDC optional hosted structural report and the
 same owner's separately scoped, nonbinding 49 USDC manual CSV help hypothesis.
+
+
+A second offline parsing level (2026-10-21) accepts a strictly anchored
+purchase/sale + amount + uppercase ticker **candidate** even if followed by
+a bounded, recognized price/reference note such as "for CAD 90", but marks
+the note IGNORED and never interprets it as fiat paid, quote asset or cost
+basis. Reversal, cancellation, second action or unsupported notes remain
+NOT_PARSED; the user must verify the original and the candidate output is
+explicitly non-Koinly-importable.

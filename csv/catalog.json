@@ -67,6 +67,25 @@
     "noWallet": true,
     "notKoinlyImport": true,
     "noTokenOrTaxFactsInferred": true,
-    "relatedSameOwnerOptionalHumanScopeUSDC": "49 nonbinding subject to separate written agreement"
+    "relatedSameOwnerOptionalHumanScopeUSDC": "49 nonbinding subject to separate written agreement",
+    "trailingContext": {
+      "allowListedInitialNotes": [
+        "for",
+        "at",
+        "via",
+        "on",
+        "fee",
+        "price",
+        "total",
+        "order",
+        "reference",
+        "ref"
+      ],
+      "classification": "candidate direction, asset and source-exact decimal ONLY",
+      "unsupportedReversalsRejected": true,
+      "trailingDetailsNotInterpreted": true,
+      "sourcePrivateFieldsNeverDownloaded": true,
+      "notPriceOrFeeEstimation": true
+    }
   }
 }
