@@ -65,3 +65,13 @@ explicitly non-Koinly-importable. The related original AI-generated DEV Communit
 walkthrough is publicly available at
 https://dev.to/livasticvm2primary/why-crypto-csv-descriptions-are-not-trades-extract-candidates-without-inventing-cost-basis-2jdf
 and describes only source-verified fictional examples, not customer orders.
+
+Buyer-facing free-first discovery (2026-10-21): for one truly buyer-authorized
+unsupported exchange schema, the SAME ultimate owner has an EXISTING separate
+VM1 HashN agent-services contact-only offer of 5 native Circle Base8453 USDC,
+max 10 wholly deidentified source example rows, at https://hashn.com/store/886ed287-aaca-434b-9f27-560a50bfbbb6/listings/koinly-csv-one-source-mapping-mini-review-5usdc.md.
+HashN offers neither an automatic checkout nor escrow. This is DISTINCT from
+our existing VM5 per-call paid API and the owner's larger nonbinding 49 USDC
+proposal (up to 50 deidentified rows). No purchase, buyer or actual transfer
+is asserted; the paid manual case needs separate scope, rights, refund and
+payment agreement after free inspection.

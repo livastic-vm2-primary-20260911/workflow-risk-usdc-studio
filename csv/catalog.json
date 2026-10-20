@@ -86,6 +86,27 @@
       "trailingDetailsNotInterpreted": true,
       "sourcePrivateFieldsNeverDownloaded": true,
       "notPriceOrFeeEstimation": true
-    }
+    },
+    "relatedSameOwnerOptionalManualReviewOffers": [
+      {
+        "seller": "same-beneficial-owner-existing-VM1-HashN-account",
+        "url": "https://hashn.com/store/886ed287-aaca-434b-9f27-560a50bfbbb6/listings/koinly-csv-one-source-mapping-mini-review-5usdc.md",
+        "advertisedPriceNativeCircleBaseUSDC": "5",
+        "maximumBuyerAuthorizedDeidentifiedRows": 10,
+        "requiresSeparateWrittenScope": true,
+        "hashnNoEscrowNoCheckout": true,
+        "independentOrdersVerified": 0,
+        "notTaxOrImporterAcceptanceCertification": true
+      },
+      {
+        "seller": "same-beneficial-owner-existing-manual-proposal",
+        "advertisedPriceNativeCircleBaseUSDC": "49",
+        "maximumBuyerAuthorizedDeidentifiedRows": 50,
+        "requiresSeparateWrittenScope": true,
+        "offerStatus": "nonbinding_proposed_scope_not_an_instant_payment",
+        "independentOrdersVerified": 0,
+        "notTaxOrImporterAcceptanceCertification": true
+      }
+    ]
   }
 }
