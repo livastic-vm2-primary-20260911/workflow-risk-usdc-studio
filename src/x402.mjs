@@ -4,6 +4,7 @@
  * This static site never handles a private key or settles payments itself.
  */
 export const MERCHANT_URL = "https://vm5-openapi-x402.onrender.com/v1/workflow-risk";
+export const FREE_SAMPLE_URL = "https://vm5-openapi-x402.onrender.com/v1/workflow-risk-sample";
 export const CHAIN = "eip155:8453";
 export const CHAIN_HEX = "0x2105";
 export const USDC = "0x833589fCD6eDb6E08f4C7C32D4f71b54bdA02913";
@@ -158,6 +159,20 @@ export function parseSettlement(headerValue) {
     return {confirmed:false,reason:"Settlement proof invalid or incomplete"};
   }
   return {confirmed:true,transaction:parsed.transaction, network:CHAIN};
+}
+export function verifyFreeSample(payload) {
+  check(payload && typeof payload === "object" && !Array.isArray(payload),
+        "Invalid free sample");
+  check(payload.exampleOnly === true && payload.paid === false &&
+        payload.chargedUSDC === "0", "An example cannot claim real payment");
+  check(payload.sampleReport && typeof payload.sampleReport === "object" &&
+        !Array.isArray(payload.sampleReport) &&
+        payload.sampleReport.staticOnly === true,
+        "Unexpected sample report shape");
+  check(payload.paidEndpoint === "POST " + new URL(MERCHANT_URL).pathname &&
+        payload.network === CHAIN,
+        "Free sample linked to unexpected paid merchant");
+  return payload;
 }
 export function shortAddress(address) {
   return normAddress(address).slice(0, 8) + "…" + normAddress(address).slice(-6);

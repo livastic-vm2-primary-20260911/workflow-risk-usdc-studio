@@ -1,8 +1,8 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
-  MERCHANT_URL, CHAIN, CHAIN_HEX, USDC, SELLER, PRICE, MAX_INPUT_BYTES,
-  validateInput, decodeHeader, verifyChallenge, payloadDigest,
+  MERCHANT_URL, FREE_SAMPLE_URL, CHAIN, CHAIN_HEX, USDC, SELLER, PRICE, MAX_INPUT_BYTES,
+  validateInput, decodeHeader, verifyChallenge, verifyFreeSample, payloadDigest,
   paymentAuthorization, buildPaymentHeader, parseSettlement, shortAddress
 } from "../src/x402.mjs";
 
@@ -231,4 +231,40 @@ test("properly formatted response claims success but not block finality",()=>{
 });
 test("short payer/payee label obscures middle only",()=>{
   assert.equal(shortAddress(SELLER),"0x6b01ef…717f34");
+});
+
+const sample = () => ({
+  exampleOnly: true, paid: false, chargedUSDC: "0",
+  sampleReport: {staticOnly:true, findings:[{severity:"warning",line:3}]},
+  paidEndpoint: "POST /v1/workflow-risk", network:CHAIN
+});
+test("pins the genuine first-party FREE sample route", () => {
+  assert.equal(FREE_SAMPLE_URL,
+    "https://vm5-openapi-x402.onrender.com/v1/workflow-risk-sample");
+});
+test("accepts clearly flagged nonpaying public synthetic report",()=>{
+  const verified=verifyFreeSample(sample());
+  assert.equal(verified.paid,false);
+  assert.equal(verified.chargedUSDC,"0");
+  assert.equal(verified.sampleReport.staticOnly,true);
+});
+test("rejects synthetic sample if it claims a real paid result",()=>{
+  for (const [key,value] of [
+    ["exampleOnly",false],["paid",true],["chargedUSDC","200000"],
+    ["chargedUSDC",0],["paidEndpoint","POST /v1/ping"],["network","eip155:1"]
+  ]) {
+    const x=sample();x[key]=value;
+    assert.throws(()=>verifyFreeSample(x),/An example cannot claim|unexpected paid merchant/);
+  }
+});
+test("rejects a false synthetic sample that lacks a static report",()=>{
+  for (const v of [null,{},[],{staticOnly:false},{staticOnly:"true"}]) {
+    const x=sample();x.sampleReport=v;
+    assert.throws(()=>verifyFreeSample(x),/Unexpected sample report shape/);
+  }
+});
+test("rejects malformed free sample envelopes",()=>{
+  for (const v of [null,[],0,"sample"]) {
+    assert.throws(()=>verifyFreeSample(v),/Invalid free sample/);
+  }
 });

@@ -1,7 +1,7 @@
 import {test} from "node:test";
 import assert from "node:assert/strict";
 import {readFileSync} from "node:fs";
-import {MERCHANT_URL, PRICE, SELLER, USDC, CHAIN, MAX_INPUT_BYTES} from "../src/x402.mjs";
+import {MERCHANT_URL, FREE_SAMPLE_URL, PRICE, SELLER, USDC, CHAIN, MAX_INPUT_BYTES} from "../src/x402.mjs";
 
 const c=JSON.parse(readFileSync(new URL("../catalog.json",import.meta.url),"utf8"));
 const html=readFileSync(new URL("../index.html",import.meta.url),"utf8");
@@ -35,8 +35,10 @@ test("catalog example is bounded and does not carry a key",()=>{
   assert.ok(!/privateKey|mnemonic|secretKey|signingKey/.test(JSON.stringify(c.request.example)));
 });
 test("public page exposes a first-party free report example",()=>{
+  assert.equal(c.freePublicSyntheticExample,FREE_SAMPLE_URL);
   assert.ok(html.includes(c.freePublicSyntheticExample));
   assert.ok(html.includes("See the free, fictional report sample"));
+  assert.ok(html.includes('id="free-preview"'));
 });
 test("llms.txt points agents to actual paid URL and token",()=>{
   assert.ok(llms.includes(MERCHANT_URL));

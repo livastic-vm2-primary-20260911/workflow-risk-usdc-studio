@@ -14,7 +14,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://vm5-openapi-x402.onrender.com; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'; upgrade-insecure-requests">
 <title>Workflow Risk Studio — Free YAML Checks + 0.20 USDC x402 Report</title>
 <link rel="stylesheet" href="./style.css">
-<script type="module" src="./src/app.mjs?v=20261020-bazaar"></script>
+<script type="module" src="./src/app.mjs?v=20261020-freesample"></script>
 </head>
 <body>
 <header class="shell nav">
@@ -96,6 +96,8 @@
     </div>
     <div class="result-col">
       <p class="eyebrow">PAYMENT PROCESS</p>
+      <div class="step"><span>0</span><div><b>Preview a free fictional report — no wallet</b><p>See the real merchant's public example JSON. No workflow upload, signature, or charge. The example is not a report on your file.</p></div></div>
+      <button type="button" id="free-preview" class="btn outline">0. Preview FREE fictional JSON report</button>
       <div class="step"><span>1</span><div><b>Check live price — free</b><p>Sends YAML to the host to validate it; expects a 402 challenge without signing or transferring funds.</p></div></div>
       <button type="button" id="quote" class="btn primary">1. Inspect unsigned 0.20 USDC quote</button>
       <div class="step"><span>2</span><div><b>Connect your wallet</b><p>No recovery phrase or private key entry. Your injected wallet stays in control. Switch to Base mainnet within the wallet if required.</p></div></div>
