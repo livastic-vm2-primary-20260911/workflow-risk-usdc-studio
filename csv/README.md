@@ -75,3 +75,25 @@ our existing VM5 per-call paid API and the owner's larger nonbinding 49 USDC
 proposal (up to 50 deidentified rows). No purchase, buyer or actual transfer
 is asserted; the paid manual case needs separate scope, rights, refund and
 payment agreement after free inspection.
+
+
+## Buyer-preview for the distinct existing one-owner 5 native Base Circle USDC
+manual 10-deidentified-row technical review (2026-10-21)
+
+Original public **100% synthetic** reproducible example:
+https://livastic-vm2-primary-20260911.github.io/workflow-risk-usdc-studio/csv/mini-review-demo/
+
+This is a precontract DEMONSTRATION of the review format, not a claim that
+outside customers bought it. It ships one fully invented source CSV containing
+exactly 10 rows, one source-derived actual inspectNarrativeCSV JSON report,
+and its actual downloadable redacted review-only CSV. The shipping local
+strict parser currently yields 6 review-only candidates and 4 explicitly
+NOT_PARSED exceptions; it does not claim tax reporting, price/cost basis,
+source wallet ownership or Koinly file acceptance.
+
+Buyer eligibility remains one authorized source and ≤10 completely deidentified
+rows, nonbinding advertised 5 native Circle USDC on Base until separate written
+scope/data rights/token/payee, payment/refund and acceptance are mutually agreed.
+HashN is a no-escrow agent contact directory; human inquiries may use the
+original owner inbox with public headers and fictional issues. No one paid or
+signed a transaction by accessing this sample.

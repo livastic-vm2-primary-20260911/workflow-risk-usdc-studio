@@ -1,0 +1,11 @@
+Description,Time,Reference,QuoteText
+"Purchase of 1.4324467000 SOL","2026-10-01T10:00:00Z","SYNTHETIC-01","quote not verified"
+"Sale of 0.250000 BTC","2026-10-02T11:30:00Z","SYNTHETIC-02","quote not verified"
+"Purchase of 2 SOL for 99 CAD","2026-10-03T12:00:00Z","SYNTHETIC-03","CAD context not verified"
+"Bought 0.000000000000000001 ETH","2026-10-04T09:15:00Z","SYNTHETIC-04","quote not verified"
+"Sold 3 XRP reference FICT-AB","2026-10-05T14:00:00Z","SYNTHETIC-05","reference only"
+"Bought 5 USDC","2026-10-06T16:00:00Z","SYNTHETIC-06","contract not verified"
+"Transfer of 5 USDC","2026-10-07T16:00:00Z","SYNTHETIC-07","not a buy/sell"
+"Purchase of 1 ETH for CAD 100 REFUNDED","2026-10-08T08:00:00Z","SYNTHETIC-08","refund not settled"
+"=HYPERLINK(""https://invalid.example/test"")","2026-10-09T00:00:00Z","SYNTHETIC-09","formula-like text"
+"Purchase of 1 SOL and sold 2 BTC","2026-10-10T00:00:00Z","SYNTHETIC-10","multiple actions"

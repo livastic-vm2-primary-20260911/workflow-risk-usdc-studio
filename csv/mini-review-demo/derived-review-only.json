@@ -1,0 +1,100 @@
+{
+  "kind": "CRYPTO_NARRATIVE_CSV_BROWSER_LOCAL_CANDIDATES",
+  "paid": false,
+  "uploaded": false,
+  "chargedUSDC": "0",
+  "inputBytes": 946,
+  "sourceRecords": 10,
+  "candidateRecords": 6,
+  "unparsedRecords": 4,
+  "descriptionColumn": "Description",
+  "reasonTotals": {
+    "NO_EXACT_SINGLE_ACTION": 1,
+    "REVERSAL_OR_MULTIPLE_ACTIONS": 2,
+    "FORMULA_LIKE": 1
+  },
+  "records": [
+    {
+      "sourceRecord": 2,
+      "status": "REVIEW_REQUIRED",
+      "code": "NARRATIVE_CANDIDATE_ONLY",
+      "kind": "BUY_CANDIDATE",
+      "quantity": "1.4324467000",
+      "symbol": "SOL",
+      "trailingContextIgnored": false
+    },
+    {
+      "sourceRecord": 3,
+      "status": "REVIEW_REQUIRED",
+      "code": "NARRATIVE_CANDIDATE_ONLY",
+      "kind": "SELL_CANDIDATE",
+      "quantity": "0.250000",
+      "symbol": "BTC",
+      "trailingContextIgnored": false
+    },
+    {
+      "sourceRecord": 4,
+      "status": "REVIEW_REQUIRED",
+      "code": "TRAILING_CONTEXT_IGNORED_REVIEW_REQUIRED",
+      "kind": "BUY_CANDIDATE",
+      "quantity": "2",
+      "symbol": "SOL",
+      "trailingContextIgnored": true
+    },
+    {
+      "sourceRecord": 5,
+      "status": "REVIEW_REQUIRED",
+      "code": "NARRATIVE_CANDIDATE_ONLY",
+      "kind": "BUY_CANDIDATE",
+      "quantity": "0.000000000000000001",
+      "symbol": "ETH",
+      "trailingContextIgnored": false
+    },
+    {
+      "sourceRecord": 6,
+      "status": "REVIEW_REQUIRED",
+      "code": "TRAILING_CONTEXT_IGNORED_REVIEW_REQUIRED",
+      "kind": "SELL_CANDIDATE",
+      "quantity": "3",
+      "symbol": "XRP",
+      "trailingContextIgnored": true
+    },
+    {
+      "sourceRecord": 7,
+      "status": "REVIEW_REQUIRED",
+      "code": "NARRATIVE_CANDIDATE_ONLY",
+      "kind": "BUY_CANDIDATE",
+      "quantity": "5",
+      "symbol": "USDC",
+      "trailingContextIgnored": false
+    },
+    {
+      "sourceRecord": 8,
+      "status": "NOT_PARSED",
+      "code": "NO_EXACT_SINGLE_ACTION"
+    },
+    {
+      "sourceRecord": 9,
+      "status": "NOT_PARSED",
+      "code": "REVERSAL_OR_MULTIPLE_ACTIONS"
+    },
+    {
+      "sourceRecord": 10,
+      "status": "NOT_PARSED",
+      "code": "FORMULA_LIKE"
+    },
+    {
+      "sourceRecord": 11,
+      "status": "NOT_PARSED",
+      "code": "REVERSAL_OR_MULTIPLE_ACTIONS"
+    }
+  ],
+  "limitations": [
+    "CANDIDATES ONLY. No Koinly import, quote asset, paid value, fees, tax basis, income, or import guarantee.",
+    "Asset tickers alone do not prove the blockchain, token contract, or receipt.",
+    "No date/timezone, source ID, fee or transfer assumptions; reconcile originals manually.",
+    "If an explicit sentence has a trailing note, that note was IGNORED, never priced/parsed; check reversals, fees and context from the original.",
+    "The optional review CSV copies neither the raw description nor unrelated source columns.",
+    "Do not share private exchange exports or real wallet/account records without authorization."
+  ]
+}

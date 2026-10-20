@@ -107,6 +107,18 @@
         "independentOrdersVerified": 0,
         "notTaxOrImporterAcceptanceCertification": true
       }
-    ]
+    ],
+    "independentFictionalMiniReviewEvidence": {
+      "url": "https://livastic-vm2-primary-20260911.github.io/workflow-risk-usdc-studio/csv/mini-review-demo/",
+      "classification": "100pct-fictional-sample-not-paid-customer-experience",
+      "syntheticSourceRecords": 10,
+      "genuinelyDerivedReviewCandidateRecords": 6,
+      "unparsedRecords": 4,
+      "publicSourceInput": "csv/mini-review-demo/synthetic-source-10rows.csv",
+      "publicMachineReadableReview": "csv/mini-review-demo/derived-review-only.json",
+      "candidateExportDoesNotContainRawSourceCells": true,
+      "requiresSeparateWrittenScopeBeforeRealBuyerDataOrUSDCTransfer": true,
+      "independentRealBuyersOrPaidDemoClaims": 0
+    }
   }
 }
