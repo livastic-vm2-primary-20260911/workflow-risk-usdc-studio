@@ -18,6 +18,11 @@ x402Version2, network eip155:8453, Circle Base USDC token
 payee 0x6b01efA0705E91a7aca54271510bf9e594717f34,
 and amountAtomic 5000 (0.005 USDC).
 
+Since 2026-10-21 the optional unsigned HTTP402 price lookup sends ONLY
+a fixed public fictional CSV and never any buyer's CSV content; a locally
+hashed buyer input remains on-device until the buyer separately authorizes
+one paid report and upload consent. No real buyer wallet/payment was used.
+
 The browser client separately verifies the live amount, token, payee, Base
 chain, and exact 402 resource before any wallet request. It never imports a
 seed, asks for an ERC20 unlimited approve, or automatically repeats a signed

@@ -5,7 +5,13 @@
   "operatorDisclosure": "AI-assisted; same sole human beneficiary for VM2 frontend and VM5 paid merchant",
   "free": {
     "type": "browser-local",
-    "checks": ["ragged rows", "duplicate rows", "empty cells", "formula-like text", "duplicate headers"],
+    "checks": [
+      "ragged rows",
+      "duplicate rows",
+      "empty cells",
+      "formula-like text",
+      "duplicate headers"
+    ],
     "maxUtf8Bytes": 32768,
     "maxDataRows": 500,
     "maxColumns": 40,
@@ -18,7 +24,10 @@
     "method": "POST",
     "requestBody": {
       "csvText": "email,amount\nalice@example.org,3.2\nalice@example.org,3.2",
-      "expectedColumns": ["email", "amount"]
+      "expectedColumns": [
+        "email",
+        "amount"
+      ]
     },
     "paymentProtocol": "x402 v2 exact EIP-3009",
     "network": "eip155:8453",
@@ -34,10 +43,20 @@
   "existingOwnerMerchant": true,
   "rules": [
     "Only submit nonsecret CSV owned or legitimately authorized for external processing.",
-    "A browser-local scan never uploads data; choosing paid API does send the CSV to VM5.",
+    "A browser-local scan and unsigned 402 price quote never upload buyer CSV. A separately authorized paid API call uploads nonsecret buyer CSV to VM5.",
     "Only an explicit buyer-owned wallet authorization can spend money.",
     "HTTP 402 is a price request, not a sale or settlement.",
     "Do not retry a signed paid request after a timeout without reconciliation.",
     "No compliance certification, semantic correctness guarantee, DeFi yield or investment return."
-  ]
+  ],
+  "quoteRequest": {
+    "endpoint": "https://vm5-openapi-x402.onrender.com/v1/csv-preflight",
+    "method": "POST",
+    "usesBuyerCsv": false,
+    "usesFixedSyntheticPublicCsv": true,
+    "sampleFilename": null,
+    "buyerCsvSentOnlyAfterAuthorizedPaidRequest": true,
+    "noBuyerDataSentBeforeWalletAuthorization": true,
+    "quoteNotTransaction": true
+  }
 }

@@ -18,7 +18,7 @@
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"WebApplication","name":"CSV Preflight Studio","url":"https://livastic-vm2-primary-20260911.github.io/workflow-risk-usdc-studio/csv/","description":"Free browser-local CSV structural quality check plus optional buyer-authorized x402 JSON quality report.","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":[{"@type":"Offer","name":"Free local CSV structural preview","price":"0","priceCurrency":"USD"},{"@type":"Offer","name":"Optional hosted JSON CSV preflight, one Base USDC payment","price":"0.005","priceCurrency":"USD"}]}
 </script>
-<script type="module" src="./app.mjs?v=20261020-csvlaunch"></script>
+<script type="module" src="./app.mjs?v=20261021-csv-private-quote"></script>
 </head>
 <body>
 <header class="shell nav">
@@ -89,19 +89,19 @@
       </div>
       <label for="csv-file" class="field-label">Or choose a local CSV file (up to 32KB, no upload in free mode)</label>
       <input id="csv-file" type="file" accept=".csv,text/csv" aria-describedby="csv-file-help">
-      <p id="csv-file-help" class="micro">Files are read locally into the text editor. They leave your device only if you later consent to a separate paid API quote or purchase.</p>
+      <p id="csv-file-help" class="micro">Files are read locally into the text editor. A price quote uses a fixed public synthetic example, NOT your file. Only an explicit wallet-authorized paid report can upload your nonsecret CSV.</p>
       <textarea id="csv-input" spellcheck="false" placeholder="email,amount,date&#10;alice@example.org,12.50,2026-10-20" aria-describedby="csv-limits"></textarea>
       <p id="csv-limits" class="field-foot">Max 32,768 UTF-8 bytes · max 500 data rows · max 40 columns. Free browser-local scan never uploads raw cells.</p>
       <label for="expected-columns" class="field-label">Expected headers (optional, comma-separated)</label>
       <input id="expected-columns" type="text" spellcheck="false" placeholder="email,amount,date">
       <button id="local" type="button" class="btn primary full">Scan CSV locally — FREE</button>
       <div class="local-info"><strong>Your file stays on this device in free mode.</strong> No account, third-party upload, purchase, analytics, or private key request. This heuristic checker cannot guarantee production import correctness.</div>
-      <label class="check-line privacy"><input type="checkbox" id="consent"> I own or am authorized to submit this nonsecret CSV to the <strong>separate VM5 hosted service</strong> if I choose to pay.</label>
+      <label class="check-line privacy"><input type="checkbox" id="consent"> I own or am authorized to submit this nonsecret CSV, and consent to VM5 upload <strong>ONLY if I separately authorize the paid 0.005 USDC request</strong>.</label>
     </div>
     <div class="result-col" id="payment">
       <p class="eyebrow">OPTIONAL PAID ANALYSIS — NEVER AUTO-CHARGED</p>
-      <div class="step"><span>1</span><div><b>Verify live terms — no payment</b><p>This sends your CSV to the VM5 merchant. If valid, the server returns HTTP 402 with a quote. A quote is not proof of a charge.</p></div></div>
-      <button id="quote" type="button" class="btn outline">1. Inspect unsigned 0.005 USDC quote</button>
+      <div class="step"><span>1</span><div><b>Verify live terms — no payment</b><p>This sends ONLY a fixed public synthetic CSV to get an HTTP 402 price quote. Your uploaded/pasted CSV stays on-device. A quote is not payment.</p></div></div>
+      <button id="quote" type="button" class="btn outline">1. Inspect unsigned 0.005 USDC quote — synthetic data only</button>
       <div class="step"><span>2</span><div><b>Connect a Base wallet</b><p>Your wallet extension keeps the signing key. No seed phrase, exported key, or unlimited approval.</p></div></div>
       <button id="connect" type="button" class="btn outline">2. Connect Base wallet</button>
       <p id="wallet-address" class="micro">No wallet connected.</p>
@@ -128,7 +128,7 @@
 </section>
 <section class="shell trust">
   <p class="eyebrow">TRANSPARENT LIMITS</p><h2>Structural preflight, not compliance certification.</h2>
-  <p>The local scan is intentionally heuristic and may produce false positives or miss semantic problems. It never executes CSV formulas, never uploads CSV in free mode, and never copies raw row contents into the free JSON report. The optional VM5 merchant is an existing x402 service operated by the same beneficial owner; using its hosted API means the text you explicitly submit is processed remotely in memory. Do not submit secrets, production credentials or unauthorized personal records. No independent paid purchase of the buyer-provided CSV POST is asserted here.</p>
+  <p>The local scan is intentionally heuristic and may produce false positives or miss semantic problems. It never executes CSV formulas, never uploads CSV in free mode, and never copies raw row contents into the free JSON report. The unsigned price quote also uploads only our public synthetic example, not your CSV. The optional VM5 merchant is an existing x402 service operated by the same beneficial owner; using its hosted API means the text you explicitly submit is processed remotely in memory. Do not submit secrets, production credentials or unauthorized personal records. No independent paid purchase of the buyer-provided CSV POST is asserted here.</p>
   <p><a href="../">GitHub Actions paid studio ↗</a> · <a href="https://github.com/livastic-vm2-primary-20260911/workflow-risk-usdc-studio" target="_blank" rel="noopener noreferrer">Code and tests ↗</a> · <a href="mailto:onecursor1@gmail.com?subject=CSV%20preflight%20paid%20report%20help">Support and feedback</a></p>
 </section>
 </main>

@@ -1,9 +1,9 @@
 import {inspectCSV, parseExpectedColumns} from "./local.mjs?v=20261020-csvlaunch";
 import {
   MERCHANT_URL, CHAIN_HEX, PRICE, SELLER, USDC,
-  validateInput, decodeHeader, verifyChallenge, payloadDigest,
+  validateInput, SYNTHETIC_QUOTE_BODY, decodeHeader, verifyChallenge, payloadDigest,
   paymentAuthorization, buildPaymentHeader, parseSettlement, shortAddress
-} from "./pay.mjs?v=20261020-csvlaunch";
+} from "./pay.mjs?v=20261021-csv-private-quote";
 
 const el = id => document.getElementById(id);
 const text = el("csv-input");
@@ -106,9 +106,8 @@ quoteButton.addEventListener("click",async()=>{
   quoteButton.disabled=true;payButton.disabled=true;
   try {
     const data=ownInput();
-    if (!el("consent").checked) throw new Error("Confirm authority to send NONSECRET CSV to the hosted merchant.");
-    reportStatus("Requesting the unsigned live CSV payment quote. Data is sent to VM5, but NO wallet signature or charge.");
-    const r=await fetch(MERCHANT_URL,requestBody(data));
+    reportStatus("Requesting an unsigned price using ONLY a fixed public FICTIONAL CSV. Your CSV stays on your device: NO wallet signature or charge.");
+    const r=await fetch(MERCHANT_URL,requestBody(SYNTHETIC_QUOTE_BODY));
     if(r.status!==402) {
       reportStatus("Merchant HTTP "+r.status+". No valid payment quote; file may be invalid. No charge.", "warning");
       return;
@@ -117,7 +116,7 @@ quoteButton.addEventListener("click",async()=>{
     quote=verified;quoteTime=Date.now();
     quoteDigest=await payloadDigest(data.csvText,data.expectedColumns);
     payButton.disabled=!wallet;
-    reportStatus("LIVE x402 quote verified: exactly 0.005 Circle Base USDC; seller "+
+    reportStatus("LIVE x402 quote verified using a synthetic CSV (your data was NOT uploaded): exactly 0.005 Circle Base USDC; seller "+
       shortAddress(SELLER)+". This is PRICE DISCOVERY, not a payment. Connect an authorized Base wallet only if you want to buy.", "ready");
   } catch(e) {
     reportStatus("Unsigned CSV quote failed: "+String(e?.message || e).slice(0,240)+". No charge.", "warning");

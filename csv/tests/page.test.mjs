@@ -32,7 +32,7 @@ test("CSV CSP permits only same-origin scripts and known original merchant calls
 });
 test("CSV HTML does not import third-party script bundles",()=>{
   const scripts=[...html.matchAll(/<script\b[^>]*src="([^"]+)"/g)].map(v=>v[1]);
-  assert.deepEqual(scripts,["./app.mjs?v=20261020-csvlaunch"]);
+  assert.deepEqual(scripts,["./app.mjs?v=20261021-csv-private-quote"]);
 });
 test("CSV page always offers on-device scan separate from paid quote",()=>{
   assert.ok(html.includes('Scan CSV locally — FREE'));

@@ -12,6 +12,17 @@ export const USDC = "0x833589fCD6eDb6E08f4C7C32D4f71b54bdA02913";
 export const SELLER = "0x6b01efA0705E91a7aca54271510bf9e594717f34";
 export const PRICE = "5000"; // 0.005 USDC, 6 decimals. Never silently raise.
 export const MAX_INPUT_BYTES = 32768;
+// Public fictional test data for UNSIGNED price discovery. This data is
+// constant and intentionally unrelated to any buyer-supplied CSV.
+export const SYNTHETIC_QUOTE_BODY = Object.freeze({
+  csvText: [
+    "email,amount,date",
+    "synthetic@example.org,12.50,2026-10-20",
+    "synthetic@example.org,12.50,2026-10-20",
+    "test@example.org,24.00,2026-10-21"
+  ].join("\n"),
+  expectedColumns: Object.freeze(["email","amount","date"])
+});
 const ADDRESS = /^0x[a-f0-9]{40}$/i;
 const HASH = /^0x[a-f0-9]{64}$/i;
 const SIGNATURE = /^0x[a-f0-9]{130}$/i;
