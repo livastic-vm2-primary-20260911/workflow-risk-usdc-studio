@@ -2,7 +2,7 @@ import {
   MERCHANT_URL, CHAIN_HEX, PRICE, SELLER, USDC, MAX_INPUT_BYTES,
   validateInput, decodeHeader, verifyChallenge, payloadDigest,
   paymentAuthorization, buildPaymentHeader, parseSettlement, shortAddress
-} from "./x402.mjs";
+} from "./x402.mjs?v=20261020-bazaar";
 
 const el = id => document.getElementById(id);
 const status = el("status");
