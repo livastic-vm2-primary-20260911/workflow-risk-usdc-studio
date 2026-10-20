@@ -46,9 +46,25 @@ export function verifyChallenge(challenge) {
         "Unexpected paid resource; no payment will be signed");
   check(Array.isArray(challenge.accepts) && challenge.accepts.length === 1,
         "Unexpected payment options; no payment will be signed");
-  check(!challenge.extensions || (typeof challenge.extensions === "object" &&
-        Object.keys(challenge.extensions).length === 0),
+  // The existing merchant legitimately advertises the standard x402
+  // Bazaar DISCOVERY extension. It does not alter the asset, amount, payee,
+  // or EIP-3009 signature. Echo only this recognized metadata verbatim.
+  // Reject unknown extensions rather than silently weakening checkout rules.
+  const extensions = challenge.extensions ?? {};
+  check(extensions && typeof extensions === "object" && !Array.isArray(extensions) &&
+        Object.keys(extensions).every(k => k === "bazaar"),
         "Unsupported payment extensions");
+  if (extensions.bazaar) {
+    const b = extensions.bazaar;
+    check(b && typeof b === "object" && !Array.isArray(b) &&
+          b.info && typeof b.info === "object" && b.schema &&
+          typeof b.schema === "object" &&
+          b.info.input?.type === "http" &&
+          b.info.input?.method === "POST" &&
+          b.info.input?.bodyType === "json" &&
+          JSON.stringify(b).length <= 5000,
+          "Unexpected Bazaar discovery metadata");
+  }
   const p = challenge.accepts[0];
   check(p.scheme === "exact" && p.network === CHAIN,
         "Unsupported chain or settlement method");
@@ -130,7 +146,7 @@ export function buildPaymentHeader(quote, authorization, signature) {
     resource: quote.challenge.resource,
     accepted: quote.payment,
     payload: {signature, authorization},
-    extensions: {}
+    extensions: quote.challenge.extensions ?? {}
   };
   return btoa(JSON.stringify(payload));
 }

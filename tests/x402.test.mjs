@@ -78,6 +78,30 @@ test("negative and invalid amount formats rejected",()=>{
 test("extra settlement extensions are rejected before wallet signing",()=>{
   assert.throws(()=>verifyChallenge(mutate(c=>{c.extensions={permit2:{spender:addr}};})),/Unsupported payment extensions/);
 });
+test("the existing merchant's public Bazaar discovery extension is allowed and echoed",()=>{
+  const c=valid();
+  c.extensions={bazaar:{
+    info:{input:{type:"http",method:"POST",bodyType:"json",body:{workflowYaml:"name: synthetic public file"}},
+          output:{type:"json",example:{risk:"none"}}},
+    schema:{$schema:"https://json-schema.org/draft/2020-12/schema",type:"object",properties:{}}
+  }};
+  const quote=verifyChallenge(c);
+  assert.equal(quote.payment.amount,PRICE);
+  const {authorization}=paymentAuthorization(quote,addr,1800000000,random);
+  const header=buildPaymentHeader(quote,authorization,sign);
+  assert.deepEqual(decodeHeader(header).extensions,c.extensions);
+});
+test("unknown Bazaar HTTP method and malicious oversized metadata fail closed",()=>{
+  const c=valid();
+  c.extensions={bazaar:{
+    info:{input:{type:"http",method:"GET",bodyType:"json"}},
+    schema:{type:"object"}
+  }};
+  assert.throws(()=>verifyChallenge(c),/Unexpected Bazaar/);
+  c.extensions.bazaar.info.input.method="POST";
+  c.extensions.bazaar.info.input.body={pad:"x".repeat(7000)};
+  assert.throws(()=>verifyChallenge(c),/Unexpected Bazaar/);
+});
 test("permit2 transfer method rejected",()=>{
   assert.throws(()=>verifyChallenge(mutate(c=>{c.accepts[0].extra.assetTransferMethod="permit2";})),/Unsupported EIP-3009/);
 });

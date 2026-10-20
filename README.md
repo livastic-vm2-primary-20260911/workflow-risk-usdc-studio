@@ -31,7 +31,7 @@ the existing VM5 Render deployment, payee address, x402 middleware or wallet.
   independently prove payment. The user should verify onchain independently.
 - We have **NOT** signed a real buyer payment or demonstrated successful
   end-to-end wallet settlement. We did verify the real unsigned HTTP402
-  quote and browser CORS headers, and ran 46 offline quote/signature tests.
+  quote and browser CORS headers, and ran 48 offline quote/signature tests including Bazaar discovery metadata.
 
 This UI is a new public sales surface. It is not a confirmed buyer order,
 paid transaction or new money. The underlying paid API already existed.
