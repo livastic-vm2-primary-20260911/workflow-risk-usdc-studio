@@ -1,0 +1,33 @@
+# Workflow Risk Studio — agent-friendly paid workflow static analysis
+
+Home: https://livastic-vm2-primary-20260911.github.io/workflow-risk-usdc-studio/
+JSON catalog: https://livastic-vm2-primary-20260911.github.io/workflow-risk-usdc-studio/catalog.json
+Original free local checker: https://livastic-vm2-primary-20260911.github.io/workflow-risk-check/
+Free fictional machine report example: https://vm5-openapi-x402.onrender.com/v1/workflow-risk-sample
+Paid merchant OpenAPI source: https://vm5-openapi-x402.onrender.com/openapi.json
+Paid endpoint: POST https://vm5-openapi-x402.onrender.com/v1/workflow-risk
+
+## What can you purchase?
+
+For a buyer-authorized, NONSECRET GitHub Actions YAML (max 48KB), receive
+a structured heuristic risk report with JSON and optional SARIF.
+One x402-v2 EIP3009 exact payment, 0.20 native Circle USDC on Base chain
+eip155:8453, 200000 atomic units, expected payee
+0x6b01efA0705E91a7aca54271510bf9e594717f34.
+Always verify actual live PAYMENT-REQUIRED requirements; do not sign if
+token, chain, amount, payee or resource URL differs from the official catalog.
+
+The server expects JSON with keys workflowYaml (required), filename, and
+includeSarif. Calls with malformed inputs may be rejected without charging.
+Unsigned HTTP402 is price discovery, not a paid result. Use an x402 v2 SDK
+with your own secured agent wallet to complete a purchase. Never put a
+private key in HTTP headers, YAML, web forms, prompts, logs, commits or
+customer data. Do not create repeat charges after a network timeout.
+
+## Boundaries and ownership
+
+The original same single human owner operates the free VM2 web interface
+and the existing VM5 merchant. No DeFi yield/investment service, raw
+CPU/GPU/VPS rental, guaranteed ROI, security certification, subscription
+or new outside buyer sale is claimed by this catalog. Browser local-first
+free analysis is available for sensitive workflows and does not upload YAML.

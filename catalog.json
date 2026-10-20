@@ -1,0 +1,53 @@
+{
+  "schemaVersion": "workflow-risk-studio/1",
+  "name": "Workflow Risk Studio",
+  "operatorDisclosure": "AI-assisted, one human economic owner for VM2 frontend and VM5 paid merchant",
+  "website": "https://livastic-vm2-primary-20260911.github.io/workflow-risk-usdc-studio/",
+  "freeLocalChecker": "https://livastic-vm2-primary-20260911.github.io/workflow-risk-check/",
+  "freePublicSyntheticExample": "https://vm5-openapi-x402.onrender.com/v1/workflow-risk-sample",
+  "merchantOpenApi": "https://vm5-openapi-x402.onrender.com/openapi.json",
+  "merchant": {
+    "origin": "https://vm5-openapi-x402.onrender.com",
+    "method": "POST",
+    "resourceUrl": "https://vm5-openapi-x402.onrender.com/v1/workflow-risk",
+    "responseFormat": "application/json",
+    "paymentProtocol": "x402-v2",
+    "paymentScheme": "exact",
+    "network": "eip155:8453",
+    "chainName": "Base Mainnet",
+    "asset": "0x833589fCD6eDb6E08f4C7C32D4f71b54bdA02913",
+    "tokenName": "Circle USDC",
+    "amountAtomic": "200000",
+    "tokenDecimals": 6,
+    "displayPrice": "0.20 USDC",
+    "payTo": "0x6b01efA0705E91a7aca54271510bf9e594717f34"
+  },
+  "request": {
+    "contentType": "application/json",
+    "required": ["workflowYaml"],
+    "optional": ["filename", "includeSarif"],
+    "maxWorkflowUtf8Bytes": 48000,
+    "example": {
+      "workflowYaml": "name: Safe CI\non: [push, pull_request]\npermissions:\n  contents: read\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo ok",
+      "filename": "ci.yml",
+      "includeSarif": true
+    }
+  },
+  "humanCheckout": "The buyer first gets HTTP402 without payment; separately connects an EIP-1193 wallet on Base; only on explicit action signs fixed-amount EIP-3009 typed data. No private keys are accepted.",
+  "agentCheckout": "Use an official x402 v2 compatible SDK with a buyer-owned wallet; inspect current live 402 terms; enforce your own per-call spending limit and payee allowlist.",
+  "provenance": {
+    "originalServiceAlreadyExisted": true,
+    "freeExampleIsNotCustomerReport": true,
+    "merchantSideProductIsNotAuditedOrCertifiedSecurity": true,
+    "oneHumanOwnerAcrossVm2AndVm5": true,
+    "noNewPaidCustomersClaimedAtLaunch": true,
+    "noRealBuyerSignedEndToEndTestClaimed": true
+  },
+  "warnings": [
+    "Do not submit secrets or private customer workflow files to the hosted API.",
+    "HTTP 402 is not proof of payment.",
+    "A signed EIP-3009 authorization can transfer real USDC.",
+    "If a paid request times out, reconcile settlement before trying again.",
+    "A heuristic static check is not a complete security review."
+  ]
+}
