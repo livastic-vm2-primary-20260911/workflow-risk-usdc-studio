@@ -1,0 +1,11 @@
+{
+  "name": "workflow-risk-usdc-studio",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Privacy-aware static web checkout for the existing real VM5 workflow-risk x402 merchant.",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs"
+  },
+  "engines": {"node": ">=20"}
+}
