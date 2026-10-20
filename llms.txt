@@ -3,6 +3,7 @@
 Home: https://livastic-vm2-primary-20260911.github.io/workflow-risk-usdc-studio/
 JSON catalog: https://livastic-vm2-primary-20260911.github.io/workflow-risk-usdc-studio/catalog.json
 Original free local checker: https://livastic-vm2-primary-20260911.github.io/workflow-risk-check/
+Free original crypto CSV narrative (review-only, local, no purchase): https://livastic-vm2-primary-20260911.github.io/workflow-risk-usdc-studio/csv/narrative/
 Free fictional machine report example: https://vm5-openapi-x402.onrender.com/v1/workflow-risk-sample
 Paid merchant OpenAPI source: https://vm5-openapi-x402.onrender.com/openapi.json
 Paid endpoint: POST https://vm5-openapi-x402.onrender.com/v1/workflow-risk

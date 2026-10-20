@@ -58,5 +58,15 @@
     "buyerCsvSentOnlyAfterAuthorizedPaidRequest": true,
     "noBuyerDataSentBeforeWalletAuthorization": true,
     "quoteNotTransaction": true
+  },
+  "freeNarrativeInspector": {
+    "url": "https://livastic-vm2-primary-20260911.github.io/workflow-risk-usdc-studio/csv/narrative/",
+    "type": "browser-local-narrative-review-candidates",
+    "priceUSDC": "0",
+    "noUpload": true,
+    "noWallet": true,
+    "notKoinlyImport": true,
+    "noTokenOrTaxFactsInferred": true,
+    "relatedSameOwnerOptionalHumanScopeUSDC": "49 nonbinding subject to separate written agreement"
   }
 }

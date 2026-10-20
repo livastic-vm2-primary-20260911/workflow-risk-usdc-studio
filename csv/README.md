@@ -38,3 +38,18 @@ No dependencies or wallet funds required. CSV code source is
 local.mjs (pure offline) + pay.mjs (x402 v2 quote/payment helpers) + app.mjs.
 One economic owner across VM1/2/3/5; no self-purchases, artificial deposits,
 rented CPU/GPU/VPS compute, or yield claims.
+
+
+## Also free — browser-local narrative candidate preflight (2026-10-21)
+
+Public sibling page: https://livastic-vm2-primary-20260911.github.io/workflow-risk-usdc-studio/csv/narrative/
+
+This strict client-only inspector identifies REVIEW_REQUIRED candidate buy/sell
+quantity/ticker pairs when CSV descriptions explicitly say "Purchase of 1.4324467000 SOL"
+or "Sale of 0.25 BTC". Its input limit is 32KiB / 500 records / 40 columns.
+No upload, wallet, paid API, guessed quote cost, tax basis, timestamp, exchange
+approval, or Koinly-ready file claim. The opt-in local download contains only
+derived candidate fields and row positions, no raw descriptions/account refs.
+Missing or ambiguous records remain flagged, never invented. Distinct from
+the existing 0.005 Base USDC optional hosted structural report and the
+same owner's separately scoped, nonbinding 49 USDC manual CSV help hypothesis.

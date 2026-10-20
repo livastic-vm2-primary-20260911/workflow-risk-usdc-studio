@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#10251f">
+<meta name="robots" content="index,follow">
+<meta name="description" content="Free browser-local crypto CSV narrative inspector. Review amount and token ticker candidates buried in exchange descriptions. No upload, wallet, tax guesswork or forced payment.">
+<link rel="canonical" href="https://livastic-vm2-primary-20260911.github.io/workflow-risk-usdc-studio/csv/narrative/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Crypto CSV Narrative Inspector — browser-local candidates">
+<meta property="og:description" content="Strict, local-only parsing of descriptions such as Purchase of 1.4324467000 SOL. No made-up dates, fees, cost basis or import claims.">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; form-action 'none'; base-uri 'none'; object-src 'none'; frame-src 'none'; upgrade-insecure-requests">
+<title>Crypto CSV Narrative Inspector — Free, Private, Review-Only</title>
+<link rel="stylesheet" href="../../style.css">
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="./style.css">
+<script type="module" src="./app.mjs?v=20261021-narrative1"></script>
+</head>
+<body>
+<header class="shell nav">
+<a class="brand" href="../../"><span class="mark" aria-hidden="true">N/</span><span>Crypto CSV <b>Narrative Inspector</b></span></a>
+<nav aria-label="Navigation">
+<a href="../">CSV Preflight Studio</a>
+<a href="#tool">Inspect locally</a>
+<a href="#limits">Limitations</a>
+<a href="https://github.com/livastic-vm2-primary-20260911/workflow-risk-usdc-studio" target="_blank" rel="noopener noreferrer">Open source ↗</a>
+</nav>
+</header>
+<main>
+<section class="shell hero">
+<div class="hero-copy">
+<p class="eyebrow">FREE · BROWSER-LOCAL · NO ACCOUNT · NO WALLET</p>
+<h1>Is your crypto amount buried <em>inside a CSV description?</em></h1>
+<p class="lead">Some historical cryptocurrency statement exports include text like <strong>“Purchase of 1.4324467000 SOL”</strong> instead of separate asset and amount columns. This tool identifies <strong>review-only</strong> buy/sell, exact quantity and asset ticker candidates, keeping your CSV on your device.</p>
+<div class="hero-actions">
+<a class="btn primary" href="#tool">Try fictional CSV example ↓</a>
+<a class="btn ghost" href="https://support.koinly.io/en/articles/9489976-how-to-create-a-custom-csv-file-with-your-data" target="_blank" rel="noopener noreferrer">Official Koinly guide ↗</a>
+</div>
+<p class="micro">No affiliation with Koinly, Wealthsimple, or any exchange. Not an automatic import, tax reconciliation or verified trade record. This page's Content Security Policy explicitly disables outgoing API requests.</p>
+</div>
+<div class="hero-visual" role="img" aria-label="Narrative description example with review-only candidate">
+<div class="terminal">
+<div class="terminal-bar">● ● ● <span>local-narrative → candidate</span></div>
+<div class="terminal-body">
+<div class="cmd">$ inspect <span>fictional-sample.csv</span></div>
+<div><span class="tag">TEXT</span> Purchase of 1.4324467000 SOL</div>
+<div><span class="tag">TYPE</span> <span class="success">BUY_CANDIDATE</span></div>
+<div><span class="tag">AMOUNT</span> <span class="gold">1.4324467000</span></div>
+<div><span class="tag">TICKER</span> SOL <span class="muted">contract unknown</span></div>
+<div class="line"></div>
+<div class="muted">Price? Date? Fees? Token identity? REVIEW REQUIRED.</div>
+<div class="muted">No Koinly-ready tax CSV is generated.</div>
+</div></div>
+</div>
+</section>
+<section class="shell tool" id="tool">
+<div class="section-heading"><div>
+<p class="eyebrow">EXPLICIT GRAMMAR ONLY</p>
+<h2>Inspect descriptions without uploading.</h2>
+<p>Accepts exactly “Purchase of N SYMBOL”, “Sale of N SYMBOL”, “Bought N SYMBOL” or “Sold N SYMBOL”. Never guesses cost basis, fiat spent, date/timezone or a token contract. Limited to 32KB, 500 data records and 40 columns. Ambiguous rows remain unparsed; source row order is retained.</p></div></div>
+<div class="form-grid">
+<div class="form-col">
+<div class="field-row"><label for="source">Crypto CSV (browser-local input)</label><button id="example" type="button" class="text-btn">Load FICTIONAL example</button></div>
+<label class="field-label" for="file">Select a local CSV file (up to 32KB)</label>
+<input id="file" type="file" accept=".csv,text/csv">
+<label class="field-label" for="column">Narrative column header</label>
+<input id="column" type="text" value="Description" maxlength="80" spellcheck="false" aria-describedby="column-help">
+<p id="column-help" class="micro">Usually Description. Only header names are shown in summaries, not original values.</p>
+<textarea id="source" spellcheck="false" placeholder="Description,Date&#10;&quot;Purchase of 1.4324467000 SOL&quot;,2026-10-01"></textarea>
+<button id="analyze" type="button" class="btn primary full">Analyze REVIEW-ONLY candidates — FREE</button>
+<p class="micro">No account, wallet connect, analytics, remote processing, cookies or localStorage. File bytes remain in this browser's memory.</p>
+</div>
+<div class="result-col">
+<p class="eyebrow">OPTIONAL LOCAL CSV EXPORT · NO CHARGES</p>
+<div id="state" role="status" aria-live="polite" class="status"></div>
+<button id="download" type="button" class="btn outline" disabled>Download candidates for MANUAL REVIEW</button>
+<p class="micro">Download includes only derived row number, candidate direction, exact decimal quantity, unverified ticker and REVIEW REQUIRED. It does not include original descriptions, account references, dates or unrelated columns. <strong>Not a Koinly-compatible CSV file.</strong></p>
+<h3>Safe summary (no source cells)</h3>
+<pre id="summary" aria-label="Local safe aggregate results">No candidate analysis yet.</pre>
+</div>
+</div>
+<div class="report-wrap">
+<h3>First 100 source records — local candidates or explicit rejection</h3>
+<div class="narrative-table-wrap">
+<table><thead><tr><th>Record</th><th>Status</th><th>Candidate type</th><th>Quantity</th><th>Symbol</th><th>Reason</th></tr></thead>
+<tbody id="rows"></tbody></table>
+</div>
+</div>
+</section>
+<section class="shell how" id="limits">
+<p class="eyebrow">THREE DISTINCT OPTIONS · ONE REAL OWNER</p>
+<h2>Get a candidate, then verify its facts.</h2>
+<div class="tiles">
+<article class="tile"><span class="tile-num">01 · FREE, LOCAL</span><h3>Understand a narrative</h3><p>Get exact decimal and uppercase ticker candidates for simple, unambiguous purchase or sale statements. Rejects formulas, duplicate headers and partial narratives rather than inventing missing fields.</p></article>
+<article class="tile"><span class="tile-num">02 · FREE, LOCAL</span><h3>Build a real import candidate</h3><p>Separately verify original transaction dates, gross quote amounts, fees and asset identity. The same owner's <a href="https://livastic-vm1-primary.github.io/paperpilot-tools/koinly-column-mapper.html">free Koinly column mapper</a> and <a href="https://livastic-vm3-primary-tmp-260920.github.io/crypto-csv-rescue/koinly-preflight/">independent format preflight</a> can help once complete source fields are available. Neither is tax advice.</p></article>
+<article class="tile"><span class="tile-num">03 · OPTIONAL MANUAL SERVICE</span><h3>Need a scoped CSV mapping?</h3><p>One owner separately offers a <strong>nonbinding 49 Base Circle USDC</strong> technical CSV rescue hypothesis for no more than 50 safely redacted, authorized records under a written scope. To inquire, <a href="mailto:onecursor1@gmail.com?subject=Crypto%20CSV%20narrative%20mapping%20scope">send column names and a nonsecret error description</a>, not private account exports. A response, agreement or purchase has not been assumed. Exact price, data handling and refund terms require separate acceptance.</p></article>
+</div>
+</section>
+<section class="shell trust">
+<p class="eyebrow">WHAT THIS DOES NOT DO</p>
+<h2>No false transactions, tax basis or verified deposits.</h2>
+<p>A description like “Purchase of 1 SOL” does not prove a real purchase, finalized transaction, chain, ticker identity, date, quote currency, amount paid, fees, ownership or tax classification. Multiple cryptoassets can share a ticker. Decimal strings are preserved exactly rather than converting through floating-point arithmetic. Unmatched records stay visible as rejected, never silently deleted or reclassified.</p>
+<p>Official vendor reference: <a href="https://support.koinly.io/en/articles/9489976-how-to-create-a-custom-csv-file-with-your-data" target="_blank" rel="noopener noreferrer">Koinly custom CSV Simple, Trades and Universal templates</a>. AI-assisted code, not affiliated with Koinly or any exchange, not a certified auditor, financial adviser or accountant.</p>
+</section>
+</main>
+<footer><div class="shell foot"><span>One Cursor · AI-assisted · 2026 · Local-only CSV candidate checker.</span><span>No wallet, no paid orders claimed, no token sent.</span></div></footer>
+</body>
+</html>
