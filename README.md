@@ -67,6 +67,10 @@ and merchant both belong to the same human economic owner.
 This UI is a new public sales surface. It is not a confirmed buyer order,
 paid transaction or new money. The underlying paid API already existed.
 
+## Optional existing-owner 5 USDC quote intake
+
+The 100% fictional ten-row mini-review example now links the **same human owner's existing VM5 Delivery Lab Google Form**, so a genuine independent buyer can ask for a narrowly scoped 5 native Circle Base USDC technical report even without a configured local mail application. This is not a new brand, seller account, payment, escrow or customer. The static site keeps the existing unsent local mailto and registered-agent HashN contact link, and it never submits a form itself. Buyers should prefix the voluntary free-text request with "5 USDC mini-review" and provide **only fictional, non-sensitive** format data; never upload raw crypto transactions, exchange statements, tax records, private wallets, seeds or customer information. Google and the same one-owner VM5 team process the reply email and written answers if the user actually submits the external form. Scope, fees, cancellation/refund, AI assistance and jurisdictional eligibility must be accepted by the buyer before any real 5 USDC payment or technical deliverable. A form click or submission is not revenue; no independent purchase or response has yet been verified.
+
 ## Validation
 
     npm test

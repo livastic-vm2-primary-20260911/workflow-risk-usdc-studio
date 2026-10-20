@@ -11,3 +11,11 @@
 .sample-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
 code{font-family:Consolas,"SFMono-Regular",monospace;color:#d4ffd1}
 @media(max-width:820px){.sample-table-wrap table{font-size:.8rem}.sample-table-wrap th,.sample-table-wrap td{padding:10px}}
+
+.optional-quote-route{margin:26px 0 22px;padding:20px 23px;border:1px solid #537b60;background:#15291e;border-radius:10px}
+.optional-quote-route h3{font-size:1.07rem;line-height:1.4;color:#e0f3d9;letter-spacing:-.015em;margin:0 0 13px}
+.optional-quote-route p{font-size:.85rem;line-height:1.8;color:#c1d3c4;margin:9px 0}
+.optional-quote-route .btn{display:inline-block;margin:9px 0 3px;text-decoration:none}
+.optional-quote-route .quote-privacy{font-size:.74rem;color:#b7cbb6;line-height:1.77}
+.optional-quote-route a:focus-visible{outline:2px solid #d9ffc3;outline-offset:3px}
+@media(max-width:650px){.optional-quote-route{padding:16px}}
