@@ -11,6 +11,24 @@ export const USDC = "0x833589fCD6eDb6E08f4C7C32D4f71b54bdA02913";
 export const SELLER = "0x6b01efA0705E91a7aca54271510bf9e594717f34";
 export const PRICE = "200000"; // 0.20 USDC, 6 decimals. Never silently raise.
 export const MAX_INPUT_BYTES = 48000;
+// An explicitly FICTIONAL, fixed request for free price discovery. It MUST
+// never be generated from buyer input. The paid call uses the buyer's own YAML
+// only after their separate wallet signature and explicit upload consent.
+export const SYNTHETIC_QUOTE_BODY = Object.freeze({
+  workflowYaml: [
+    "name: Public synthetic price probe",
+    "on: push",
+    "permissions:",
+    "  contents: read",
+    "jobs:",
+    "  check:",
+    "    runs-on: ubuntu-latest",
+    "    steps:",
+    "      - run: echo synthetic-price-only"
+  ].join("\n"),
+  filename: "synthetic-price-probe.yml",
+  includeSarif: true
+});
 const ADDRESS = /^0x[a-f0-9]{40}$/i;
 const HASH = /^0x[a-f0-9]{64}$/i;
 const SIGNATURE = /^0x[a-f0-9]{130}$/i;

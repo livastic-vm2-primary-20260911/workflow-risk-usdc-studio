@@ -16,9 +16,14 @@ the existing VM5 Render deployment, payee address, x402 middleware or wallet.
   0x6b01efA0705E91a7aca54271510bf9e594717f34.
 - This frontend is static, has no npm dependencies, no tracker and no user
   account. It never asks for or stores a private key, seed phrase or card.
-- Input must be public or authorized nonsecret YAML, <=48KB. To request a free
-  402 price quote the YAML is sent to the existing merchant, but there
-  is no payment at that step. The free checker is local-first.
+- **Privacy-first quote (2026-10-21):** the browser sends ONLY a fixed public
+  synthetic workflow when requesting a free 402 quote. Customer YAML is validated
+  and hashed locally, NEVER uploaded during price inspection. Customer YAML is
+  transmitted only after separate upload consent and signed paid authorization.
+  If signing fails or is rejected, the real YAML is not sent.
+- Input for a paid report must be buyer-owned or authorized nonsecret YAML,
+  <=48KB. A free 402 price request uses our fixed public synthetic example,
+  NOT customer input, and never pays. The free checker is local-first.
 - The browser wallet flow is **opt-in**: connect an injected EIP-1193 wallet,
   inspect the 402, then click a separate explicit purchase button. Client
   refuses changed network/asset/payee/amount/chain/transfer methods.
@@ -76,13 +81,16 @@ any real payment system.
 ## Actual buyer flow
 
 1. Use the free checker for sensitive workflows, or paste a nonsecret,
-   self-owned YAML input in this studio and check the explicit consent box.
-2. Click Inspect unsigned quote — this makes a POST without a
-   PAYMENT-SIGNATURE. Normal valid input should produce HTTP402. The UI
+   self-owned YAML input. You can inspect price without enabling upload consent.
+2. Click Inspect unsigned quote — this sends ONLY a public synthetic example,
+   never your real YAML, and contains no PAYMENT-SIGNATURE. The local
+   browser hashes your chosen YAML to lock subsequent paid input. The fixed
+   example was verified against the real merchant's HTTP402 response. The UI
    accepts only the exact official price/token/chain/payee and expires
    quotes after three minutes.
-3. Connect an injected Base-mainnet wallet. No keys are typed into this
-   webpage. Confirm one and only one EIP-712 0.20 USDC signature.
+3. Check consent for uploading your NONSECRET YAML ONLY during the eventual
+   paid call. Connect an injected Base-mainnet wallet. No keys are typed into
+   the page. Confirm one and only one EIP-712 0.20 USDC signature.
 4. If approved, exactly one signed POST is sent. A successful JSON body is
    displayed and can be downloaded. Settlement receipts and finality are
    separate from the JSON result.

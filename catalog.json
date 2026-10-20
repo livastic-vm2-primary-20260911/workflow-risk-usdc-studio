@@ -24,8 +24,13 @@
   },
   "request": {
     "contentType": "application/json",
-    "required": ["workflowYaml"],
-    "optional": ["filename", "includeSarif"],
+    "required": [
+      "workflowYaml"
+    ],
+    "optional": [
+      "filename",
+      "includeSarif"
+    ],
     "maxWorkflowUtf8Bytes": 48000,
     "example": {
       "workflowYaml": "name: Safe CI\non: [push, pull_request]\npermissions:\n  contents: read\njobs:\n  test:\n    runs-on: ubuntu-latest\n    steps:\n      - run: echo ok",
@@ -41,7 +46,8 @@
     "merchantSideProductIsNotAuditedOrCertifiedSecurity": true,
     "oneHumanOwnerAcrossVm2AndVm5": true,
     "noNewPaidCustomersClaimedAtLaunch": true,
-    "noRealBuyerSignedEndToEndTestClaimed": true
+    "noRealBuyerSignedEndToEndTestClaimed": true,
+    "prePaymentQuoteSendsSyntheticOnly": true
   },
   "warnings": [
     "Do not submit secrets or private customer workflow files to the hosted API.",
@@ -49,5 +55,14 @@
     "A signed EIP-3009 authorization can transfer real USDC.",
     "If a paid request times out, reconcile settlement before trying again.",
     "A heuristic static check is not a complete security review."
-  ]
+  ],
+  "quoteRequest": {
+    "method": "POST",
+    "endpoint": "https://vm5-openapi-x402.onrender.com/v1/workflow-risk",
+    "usesBuyerWorkflow": false,
+    "usesSyntheticPublicExample": true,
+    "sampleFilename": "synthetic-price-probe.yml",
+    "result": "Unpaid HTTP 402; only supported public live quote data",
+    "costOrSettlementClaim": "No wallet signing, no USDC charge, no buyer data uploaded"
+  }
 }

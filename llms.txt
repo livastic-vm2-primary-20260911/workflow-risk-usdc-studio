@@ -19,6 +19,11 @@ token, chain, amount, payee or resource URL differs from the official catalog.
 
 The server expects JSON with keys workflowYaml (required), filename, and
 includeSarif. Calls with malformed inputs may be rejected without charging.
+For the HUMAN web checkout, unsigned price discovery sends a fixed
+PUBLIC SYNTHETIC YAML example, NOT any customer YAML. An authorized real
+workflow is submitted ONLY when the buyer signs and explicitly approves the
+separate paid request. Programmatic buyers using the API directly must
+implement their own privacy-safe quote probes and explicit body consent.
 Unsigned HTTP402 is price discovery, not a paid result. Use an x402 v2 SDK
 with your own secured agent wallet to complete a purchase. Never put a
 private key in HTTP headers, YAML, web forms, prompts, logs, commits or

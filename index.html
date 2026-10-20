@@ -14,7 +14,7 @@
 <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://vm5-openapi-x402.onrender.com; base-uri 'none'; form-action 'none'; object-src 'none'; frame-src 'none'; upgrade-insecure-requests">
 <title>Workflow Risk Studio — Free YAML Checks + 0.20 USDC x402 Report</title>
 <link rel="stylesheet" href="./style.css">
-<script type="module" src="./src/app.mjs?v=20261020-freesample"></script>
+<script type="module" src="./src/app.mjs?v=20261021-private-quote"></script>
 </head>
 <body>
 <header class="shell nav">
@@ -38,7 +38,7 @@
       <a class="btn ghost" href="https://livastic-vm2-primary-20260911.github.io/workflow-risk-check/" target="_blank" rel="noopener noreferrer">Open free local checker ↗</a>
       <a class="btn outline" href="#tool">Inspect paid report steps ↓</a>
     </div>
-    <p class="micro">No newsletter, user registration or hidden plan. Viewing this page and inspecting a 402 quote costs $0. Only explicit wallet authorization can initiate a charge.</p>
+    <p class="micro">No newsletter, user registration or hidden plan. Viewing this page and inspecting a 402 quote costs $0. Price inspection uploads only a fixed, public synthetic example, NEVER your YAML. Only an explicit paid wallet authorization can send your file.</p>
   </div>
   <div class="hero-visual" role="img" aria-label="Security workflow inspection stages from paste to static checks to optional signed USDC payment and JSON report">
     <div class="terminal">
@@ -91,7 +91,7 @@
 <section id="tool" class="shell tool">
   <div class="section-heading">
     <div><p class="eyebrow">LIVE QUOTE · OPTIONAL CHECKOUT</p><h2>Get a workflow risk report</h2>
-    <p>Only paste public or otherwise explicitly authorized <strong>nonsecret</strong> workflows. This paid path sends your text to the VM5 server. For private work, use the free local checker instead.</p></div>
+    <p>Only paste public or otherwise explicitly authorized <strong>nonsecret</strong> workflows. The unsigned price check sends a fixed public synthetic example, <strong>not your YAML</strong>. Actual YAML is sent to VM5 only after you explicitly authorize a paid request. For private work, use the free local checker instead.</p></div>
     <div class="price"><span>per authorized request</span><strong>0.20 <small>USDC</small></strong><span>Circle · Base 8453</span></div>
   </div>
   <div class="form-grid">
@@ -101,14 +101,14 @@
       <textarea id="workflow" spellcheck="false" placeholder="name: Safe CI&#10;on: push&#10;permissions:&#10;  contents: read&#10;jobs: ..." aria-describedby="count"></textarea>
       <p class="field-foot"><span id="count">Limit: 48,000 UTF-8 bytes</span><span>Workflow source is not executed by this page.</span></p>
       <label class="check-line"><input type="checkbox" id="sarif" checked> Include SARIF output when supported</label>
-      <label class="check-line privacy"><input type="checkbox" id="consent"> I own or am authorized to submit this NONSECRET YAML to the VM5 hosted API.</label>
+      <label class="check-line privacy"><input type="checkbox" id="consent"> I own or may submit this NONSECRET YAML. I agree it may be uploaded to VM5 ONLY if I separately authorize the 0.20 USDC paid request.</label>
     </div>
     <div class="result-col">
       <p class="eyebrow">PAYMENT PROCESS</p>
       <div class="step"><span>0</span><div><b>Preview a free fictional report — no wallet</b><p>See the real merchant's public example JSON. No workflow upload, signature, or charge. The example is not a report on your file.</p></div></div>
       <button type="button" id="free-preview" class="btn outline">0. Preview FREE fictional JSON report</button>
-      <div class="step"><span>1</span><div><b>Check live price — free</b><p>Sends YAML to the host to validate it; expects a 402 challenge without signing or transferring funds.</p></div></div>
-      <button type="button" id="quote" class="btn primary">1. Inspect unsigned 0.20 USDC quote</button>
+      <div class="step"><span>1</span><div><b>Check live price — free</b><p>Sends a fixed, public synthetic YAML example to get an unsigned 402 price challenge. <strong>Your YAML is not uploaded during this step.</strong></p></div></div>
+      <button type="button" id="quote" class="btn primary">1. Inspect price — send SYNTHETIC example only</button>
       <div class="step"><span>2</span><div><b>Connect your wallet</b><p>No recovery phrase or private key entry. Your injected wallet stays in control. Switch to Base mainnet within the wallet if required.</p></div></div>
       <button type="button" id="connect" class="btn outline">2. Connect Base wallet</button>
       <p id="wallet-address" class="micro">No wallet connected.</p>

@@ -1,8 +1,8 @@
 import {
   MERCHANT_URL, FREE_SAMPLE_URL, CHAIN_HEX, PRICE, SELLER, USDC, MAX_INPUT_BYTES,
-  validateInput, decodeHeader, verifyChallenge, verifyFreeSample, payloadDigest,
+  validateInput, SYNTHETIC_QUOTE_BODY, decodeHeader, verifyChallenge, verifyFreeSample, payloadDigest,
   paymentAuthorization, buildPaymentHeader, parseSettlement, shortAddress
-} from "./x402.mjs?v=20261020-freesample";
+} from "./x402.mjs?v=20261021-private-quote";
 
 const el = id => document.getElementById(id);
 const status = el("status");
@@ -47,9 +47,9 @@ el("example").addEventListener("click", () => {
   yaml.value = sample; file.value = "safe-ci.yml"; invalidate();
 });
 
-function body() {
+function body({requireConsent = true} = {}) {
   validateInput(yaml.value);
-  if (!el("consent").checked)
+  if (requireConsent && !el("consent").checked)
     throw new Error("Confirm this is nonsecret data you may share with VM5");
   const filename = (file.value || "workflow.yml").trim();
   if (!/^[a-zA-Z0-9_.-]{1,94}$/.test(filename))
@@ -101,9 +101,9 @@ quoteButton.addEventListener("click", async () => {
   }
   quoteButton.disabled = true; pay.disabled = true;
   try {
-    const b = body();
-    info("Requesting a live price. Your workflow is sent to the VM5 merchant WITHOUT signing or paying.");
-    const res = await fetch(MERCHANT_URL, request(b));
+    const b = body({requireConsent:false});
+    info("Checking the live price using a FIXED PUBLIC SYNTHETIC EXAMPLE. Your YAML stays on this device; no signature or payment.");
+    const res = await fetch(MERCHANT_URL, request(SYNTHETIC_QUOTE_BODY));
     if (res.status !== 402) {
       info("No valid 402 quote returned (HTTP " + res.status +
         "). The input may be invalid or the service unavailable. No wallet action.", "warning");
@@ -114,7 +114,7 @@ quoteButton.addEventListener("click", async () => {
     quoteTime = Date.now();
     quoteDigest = await payloadDigest(b.workflowYaml, b.filename, b.includeSarif);
     pay.disabled = !wallet;
-    info("Verified LIVE x402 quote: exactly 0.20 Base USDC; Circle token " +
+    info("Verified LIVE x402 quote using a synthetic example (your YAML was NOT uploaded): exactly 0.20 Base USDC; Circle token " +
       shortAddress(USDC) + "; payee " + shortAddress(SELLER) +
       ". No payment made. Connect a Base wallet, then explicitly approve.", "ready");
   } catch (e) {
