@@ -22,3 +22,9 @@ input[type=text],textarea{border:1px solid #426e54;border-radius:8px;padding:13p
 .trust{padding:65px 0 100px;max-width:900px}.trust p:not(.eyebrow){color:#b7cdbb;font-size:1rem}.foot{display:flex;gap:25px;justify-content:space-between;padding:22px 0;border-top:1px solid #355644;color:#9bb29e;font-size:.78rem}
 @media(max-width:870px){.hero,.payment{grid-template-columns:1fr}.hero{padding:60px 0}.hero-visual{max-width:590px}.tiles{grid-template-columns:1fr}.form-grid{grid-template-columns:1fr}.nav nav{gap:11px}.payment dl>div{grid-template-columns:1fr;gap:3px}.section-heading{align-items:start;flex-wrap:wrap}.price{text-align:left}.pill{right:0}}
 @media(max-width:520px){.shell{width:calc(100% - 30px)}.nav{align-items:flex-start;flex-wrap:wrap}.nav nav{gap:10px}.hero{gap:38px}.terminal-body{padding:15px;font-size:.7rem}.pill{font-size:.72rem}.foot{flex-wrap:wrap}.form-col,.result-col{padding:18px}.field-foot{font-size:.69rem}}
+
+.csv-adjacent{display:flex;align-items:center;justify-content:space-between;gap:30px;background:#214a30;border:1px solid #71bb7f;border-radius:16px;padding:22px 26px;margin:29px 0 0}
+.csv-adjacent h3{margin:5px 0;font-size:1.4rem}
+.csv-adjacent p{margin:0;max-width:680px;color:#c9e9d1;font-size:.89rem}
+.csv-adjacent a{flex:none}
+@media(max-width:720px){.csv-adjacent{flex-wrap:wrap}.csv-adjacent a{width:100%}}

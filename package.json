@@ -5,7 +5,7 @@
   "type": "module",
   "description": "Privacy-aware static web checkout for the existing real VM5 workflow-risk x402 merchant.",
   "scripts": {
-    "test": "node --test tests/*.test.mjs"
+    "test": "node --test tests/*.test.mjs csv/tests/*.test.mjs"
   },
   "engines": {"node": ">=20"}
 }

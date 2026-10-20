@@ -1,0 +1,18 @@
+:root{scroll-padding-top:60px}
+.field-label{display:block;font-weight:700;font-size:.88rem;margin:25px 0 10px}
+.form-col textarea{min-height:310px}
+.field-foot{margin-bottom:22px}
+.full{width:100%}
+.local-info{font-size:.79rem;line-height:1.7;color:#b0c9b3;background:#0c2419;border:1px solid #385741;padding:15px;border-radius:11px;margin:16px 0 23px}
+.local-info strong{color:#d6ffca}
+.payment-details{padding:70px 0;border-top:1px solid #355544}
+.payment-details dl{margin:26px 0;max-width:1050px}
+.payment-details dl>div{display:grid;grid-template-columns:230px 1fr;gap:20px;padding:13px 0;border-bottom:1px solid #385641}
+.payment-details dt{font-weight:600;color:#b0c8af}
+.payment-details dd{margin:0;overflow-wrap:anywhere;color:#dfebe2}
+.payment-details dd code{color:#baf6c0}
+.payment-details .notice{border-left:3px solid #ffd48a;max-width:960px;padding-left:18px;color:#cddfce}
+@media(max-width:700px){.payment-details dl>div{grid-template-columns:1fr;gap:5px}}
+
+#csv-file{display:block;max-width:100%;font-size:.8rem;color:#c4e2cc;background:#153426;border:1px dashed #64866b;padding:12px;border-radius:9px;cursor:pointer;margin:8px 0 10px}
+#csv-file::file-selector-button{background:#aaf2b3;color:#0b2817;border:0;border-radius:7px;padding:8px 13px;font:inherit;font-weight:700;margin-right:12px;cursor:pointer}

@@ -39,6 +39,26 @@ user YAML, connecting a wallet or authorizing any charge. The sample is
 explicitly marked exampleOnly=true, paid=false and chargedUSDC="0";
 it is neither a report on your file nor a billable service.
 
+## New: CSV Preflight Studio, 0.005 USDC optional report
+
+The same public Pages site also has a separate CSV quality checker:
+
+https://livastic-vm2-primary-20260911.github.io/workflow-risk-usdc-studio/csv/
+
+The CSV frontend uses a browser-local structural parser for free (bounded
+32,768 UTF-8 bytes, 500 data rows, 40 columns). It reports row/column
+positions and counts for duplicates, missing cells, inconsistent row width
+and formula-like spreadsheet inputs. It does not upload data or execute
+CSV formulas when used in free mode.
+
+For permitted nonsecret CSV, a separate explicit opt-in can send a JSON
+request to the already-existing VM5 x402 POST /v1/csv-preflight. A real
+x402-v2 EIP-3009 HTTP 402 quote proves the service currently requests
+only 5,000 atomic native Circle Base USDC units (0.005 USDC). This is not
+an automatically purchased report. The wallet-signature and paid delivery
+flow is still unverified with independent outside buyers. The static UI
+and merchant both belong to the same human economic owner.
+
 This UI is a new public sales surface. It is not a confirmed buyer order,
 paid transaction or new money. The underlying paid API already existed.
 

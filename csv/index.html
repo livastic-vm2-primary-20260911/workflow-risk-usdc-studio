@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#10251f">
+<meta name="description" content="Scan CSV rows, duplicates, blank cells and spreadsheet formula risks locally for free. Optional 0.005 native Circle USDC paid JSON structural preflight on Base, with explicit x402 wallet consent.">
+<meta name="robots" content="index,follow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src https://vm5-openapi-x402.onrender.com; object-src 'none'; frame-src 'none'; base-uri 'none'; form-action 'none'; upgrade-insecure-requests">
+<link rel="canonical" href="https://livastic-vm2-primary-20260911.github.io/workflow-risk-usdc-studio/csv/">
+<meta property="og:type" content="website">
+<meta property="og:title" content="CSV Preflight Studio — Free local CSV validation + 0.005 Base USDC hosted report">
+<meta property="og:url" content="https://livastic-vm2-primary-20260911.github.io/workflow-risk-usdc-studio/csv/">
+<meta property="og:description" content="Real CSV import data-quality preflight. Local structural findings are free. Hosted x402 JSON report costs exactly 0.005 USDC on Base only if you authorize payment.">
+<title>CSV Preflight Studio — Free Local CSV Check + 0.005 USDC Hosted Report</title>
+<link rel="stylesheet" href="../style.css">
+<link rel="stylesheet" href="./style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"CSV Preflight Studio","url":"https://livastic-vm2-primary-20260911.github.io/workflow-risk-usdc-studio/csv/","description":"Free browser-local CSV structural quality check plus optional buyer-authorized x402 JSON quality report.","applicationCategory":"DeveloperApplication","operatingSystem":"Web","offers":[{"@type":"Offer","name":"Free local CSV structural preview","price":"0","priceCurrency":"USD"},{"@type":"Offer","name":"Optional hosted JSON CSV preflight, one Base USDC payment","price":"0.005","priceCurrency":"USD"}]}
+</script>
+<script type="module" src="./app.mjs?v=20261020-csvlaunch"></script>
+</head>
+<body>
+<header class="shell nav">
+  <a class="brand" href="../" aria-label="Workflow Risk Studio homepage"><span class="mark" aria-hidden="true">W/</span><span>CSV <b>Preflight Studio</b></span></a>
+  <nav aria-label="Navigation">
+    <a href="#checker">Free CSV check</a>
+    <a href="#payment">USDC report</a>
+    <a href="../">Workflow YAML Studio ↗</a>
+    <a href="https://vm5-openapi-x402.onrender.com/v1/docs" target="_blank" rel="noopener noreferrer">API docs ↗</a>
+  </nav>
+</header>
+<main>
+<section class="shell hero">
+  <div class="hero-copy">
+    <p class="eyebrow"><span class="live-dot" aria-hidden="true"></span> FREE LOCAL QUALITY CHECK · OPTIONAL LIVE x402 PAYMENT</p>
+    <h1>Spot CSV problems <em>before an import breaks.</em></h1>
+    <p class="lead">Find malformed rows, duplicate records, blank cells and formula-like content <strong>without uploading your file</strong>. Need structured JSON from a hosted API for an agent or import pipeline? Pay just <strong>0.005 native Circle USDC</strong> on Base—only if you explicitly approve.</p>
+    <div class="hero-actions"><a class="btn ghost" href="#checker">Check a CSV for free ↓</a><a class="btn outline" href="#payment">How the paid report works ↓</a></div>
+    <p class="micro">Free checks are computed by this page in your browser, not on the paid backend. No account, card, private key or wallet required to inspect locally.</p>
+  </div>
+  <div class="hero-visual" aria-label="Local CSV input quality checking" role="img">
+    <div class="terminal">
+      <div class="terminal-bar"><span aria-hidden="true">● ● ●</span><span>csv-preflight · example</span></div>
+      <div class="terminal-body">
+        <div class="cmd">$ scan <span>orders.csv</span></div>
+        <div><span class="tag">01</span> Row width check <span class="success">local</span></div>
+        <div><span class="tag">02</span> Duplicate / blanks <span class="success">local</span></div>
+        <div><span class="tag">03</span> Formula-like cells <span class="success">local</span></div>
+        <div class="line"></div>
+        <div><span class="muted">Local output: $0; no upload</span></div>
+        <div><span class="muted">Remote JSON: 0.005 USDC</span></div>
+        <div><span class="muted">Payment only with your consent</span></div>
+      </div>
+    </div>
+    <div class="pill"><span aria-hidden="true">◎</span> <b>0.005 USDC</b> · optional</div>
+  </div>
+</section>
+<section class="shell how">
+  <p class="eyebrow">DATA YOU CAN VERIFY</p><h2>Start locally. Send only what you choose.</h2>
+  <div class="tiles">
+    <article class="tile">
+      <span class="tile-num">01 · FREE FOREVER</span>
+      <h3>Private browser-side preview</h3>
+      <p>Paste CSV text or use the fictional example. Get row counts and coordinates for ragged rows, duplicated data, blanks and formula-like values. No remote API call or wallet.</p>
+    </article>
+    <article class="tile featured">
+      <span class="tile-num">02 · 0.005 USDC PER REPORT</span>
+      <h3>Hosted JSON output for agents</h3>
+      <p>With consent, send one permitted CSV (maximum 32KB, 500 data rows, 40 columns) to the original VM5 API. Pay by x402 exact USDC authorization, get the merchant's structured result.</p>
+    </article>
+    <article class="tile">
+      <span class="tile-num">03 · NO AUTOMATIC REBILL</span>
+      <h3>Exact amount and payee</h3>
+      <p>The browser checks the live quote against the pinned Base chain, Circle token and original VM5 merchant. We never issue an unlimited token approval or automatically retry a signed payment.</p>
+    </article>
+  </div>
+</section>
+<section id="checker" class="shell tool">
+  <div class="section-heading">
+    <div><p class="eyebrow">CSV STRUCTURAL QUALITY · TWO EXPLICIT MODES</p><h2>Test a CSV now</h2>
+    <p>Keep confidential CSV entirely local. For a separate hosted report, send only public or explicitly authorized nonsecret CSV data after confirming consent.</p></div>
+    <div class="price"><span>optional remote API call</span><strong>0.005 <small>USDC</small></strong><span>Base 8453 · not a subscription</span></div>
+  </div>
+  <div class="form-grid">
+    <div class="form-col">
+      <div class="field-row">
+        <label for="csv-input">CSV text</label><button id="example" type="button" class="text-btn">Load fictional test CSV</button>
+      </div>
+      <label for="csv-file" class="field-label">Or choose a local CSV file (up to 32KB, no upload in free mode)</label>
+      <input id="csv-file" type="file" accept=".csv,text/csv" aria-describedby="csv-file-help">
+      <p id="csv-file-help" class="micro">Files are read locally into the text editor. They leave your device only if you later consent to a separate paid API quote or purchase.</p>
+      <textarea id="csv-input" spellcheck="false" placeholder="email,amount,date&#10;alice@example.org,12.50,2026-10-20" aria-describedby="csv-limits"></textarea>
+      <p id="csv-limits" class="field-foot">Max 32,768 UTF-8 bytes · max 500 data rows · max 40 columns. Free browser-local scan never uploads raw cells.</p>
+      <label for="expected-columns" class="field-label">Expected headers (optional, comma-separated)</label>
+      <input id="expected-columns" type="text" spellcheck="false" placeholder="email,amount,date">
+      <button id="local" type="button" class="btn primary full">Scan CSV locally — FREE</button>
+      <div class="local-info"><strong>Your file stays on this device in free mode.</strong> No account, third-party upload, purchase, analytics, or private key request. This heuristic checker cannot guarantee production import correctness.</div>
+      <label class="check-line privacy"><input type="checkbox" id="consent"> I own or am authorized to submit this nonsecret CSV to the <strong>separate VM5 hosted service</strong> if I choose to pay.</label>
+    </div>
+    <div class="result-col" id="payment">
+      <p class="eyebrow">OPTIONAL PAID ANALYSIS — NEVER AUTO-CHARGED</p>
+      <div class="step"><span>1</span><div><b>Verify live terms — no payment</b><p>This sends your CSV to the VM5 merchant. If valid, the server returns HTTP 402 with a quote. A quote is not proof of a charge.</p></div></div>
+      <button id="quote" type="button" class="btn outline">1. Inspect unsigned 0.005 USDC quote</button>
+      <div class="step"><span>2</span><div><b>Connect a Base wallet</b><p>Your wallet extension keeps the signing key. No seed phrase, exported key, or unlimited approval.</p></div></div>
+      <button id="connect" type="button" class="btn outline">2. Connect Base wallet</button>
+      <p id="wallet-address" class="micro">No wallet connected.</p>
+      <div class="step"><span>3</span><div><b>Approve ONE hosted report</b><p>Inspect exactly 0.005 Circle USDC and the pinned payee on Base. If an authorization is signed, the page sends just one paid request.</p></div></div>
+      <button id="pay" disabled type="button" class="btn pay">3. Authorize 0.005 USDC and get JSON</button>
+      <div role="status" aria-live="polite" id="status" class="status"></div>
+    </div>
+  </div>
+  <div class="report-wrap">
+    <div class="report-head"><h3>Data-quality findings</h3><button id="download" type="button" hidden class="btn outline">Download JSON</button></div>
+    <pre id="report" aria-label="Local or paid JSON report">No report yet.</pre>
+  </div>
+</section>
+<section class="shell payment-details" aria-label="Payment facts">
+  <p class="eyebrow">ACTUAL MERCHANT · ONE OWNER ACROSS VMS</p><h2>Honest USDC payment facts.</h2>
+  <dl>
+    <div><dt>Real paid API</dt><dd><a href="https://vm5-openapi-x402.onrender.com/openapi.json" target="_blank" rel="noopener noreferrer">VM5 original x402 OpenAPI ↗</a> · <code>POST /v1/csv-preflight</code></dd></div>
+    <div><dt>Network / token</dt><dd>Base mainnet <code>eip155:8453</code>, native Circle USDC <code>0x833589fCD6eDb6E08f4C7C32D4f71b54bdA02913</code></dd></div>
+    <div><dt>Exact price</dt><dd><strong>5,000 atomic USDC units = 0.005 USDC</strong> per independently authorized call.</dd></div>
+    <div><dt>Recipient</dt><dd><code>0x6b01efA0705E91a7aca54271510bf9e594717f34</code> (original same-owner VM5 merchant)</dd></div>
+    <div><dt>Free public merchant sample</dt><dd><a href="https://vm5-openapi-x402.onrender.com/v1/csv-sample" target="_blank" rel="noopener noreferrer">Synthetic CSV sample ↗</a> · paid=false, not a private client report</dd></div>
+  </dl>
+  <p class="notice">No DeFi yield or investment return is offered. An EIP-3009 wallet signature can authorize an actual token transfer, so check the wallet popup before approving. An HTTP 402 alone is not a completed order; after a signed-request timeout, independently verify settlement before attempting another charge. The production wallet signing and paid response path has <strong>not</strong> yet been tested by an independent buyer through this page.</p>
+</section>
+<section class="shell trust">
+  <p class="eyebrow">TRANSPARENT LIMITS</p><h2>Structural preflight, not compliance certification.</h2>
+  <p>The local scan is intentionally heuristic and may produce false positives or miss semantic problems. It never executes CSV formulas, never uploads CSV in free mode, and never copies raw row contents into the free JSON report. The optional VM5 merchant is an existing x402 service operated by the same beneficial owner; using its hosted API means the text you explicitly submit is processed remotely in memory. Do not submit secrets, production credentials or unauthorized personal records. No independent paid purchase of the buyer-provided CSV POST is asserted here.</p>
+  <p><a href="../">GitHub Actions paid studio ↗</a> · <a href="https://github.com/livastic-vm2-primary-20260911/workflow-risk-usdc-studio" target="_blank" rel="noopener noreferrer">Code and tests ↗</a> · <a href="mailto:onecursor1@gmail.com?subject=CSV%20preflight%20paid%20report%20help">Support and feedback</a></p>
+</section>
+</main>
+<footer><div class="shell foot"><span>CSV Preflight Studio · One human owner · AI-assisted · 2026</span><span>Free on-device scan; paid hosted JSON only after explicit wallet approval.</span></div></footer>
+</body>
+</html>

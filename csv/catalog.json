@@ -1,0 +1,43 @@
+{
+  "schemaVersion": "csv-preflight-studio/1",
+  "name": "CSV Preflight Studio",
+  "url": "https://livastic-vm2-primary-20260911.github.io/workflow-risk-usdc-studio/csv/",
+  "operatorDisclosure": "AI-assisted; same sole human beneficiary for VM2 frontend and VM5 paid merchant",
+  "free": {
+    "type": "browser-local",
+    "checks": ["ragged rows", "duplicate rows", "empty cells", "formula-like text", "duplicate headers"],
+    "maxUtf8Bytes": 32768,
+    "maxDataRows": 500,
+    "maxColumns": 40,
+    "noUpload": true,
+    "noWallet": true,
+    "noCharge": true
+  },
+  "merchant": {
+    "resource": "https://vm5-openapi-x402.onrender.com/v1/csv-preflight",
+    "method": "POST",
+    "requestBody": {
+      "csvText": "email,amount\nalice@example.org,3.2\nalice@example.org,3.2",
+      "expectedColumns": ["email", "amount"]
+    },
+    "paymentProtocol": "x402 v2 exact EIP-3009",
+    "network": "eip155:8453",
+    "token": "native Circle USDC",
+    "asset": "0x833589fCD6eDb6E08f4C7C32D4f71b54bdA02913",
+    "decimals": 6,
+    "amountAtomic": "5000",
+    "displayPrice": "0.005 USDC",
+    "payTo": "0x6b01efA0705E91a7aca54271510bf9e594717f34"
+  },
+  "realPaidBuyerEndToEndVerified": false,
+  "newOutsideBuyerReceiptsClaimed": 0,
+  "existingOwnerMerchant": true,
+  "rules": [
+    "Only submit nonsecret CSV owned or legitimately authorized for external processing.",
+    "A browser-local scan never uploads data; choosing paid API does send the CSV to VM5.",
+    "Only an explicit buyer-owned wallet authorization can spend money.",
+    "HTTP 402 is a price request, not a sale or settlement.",
+    "Do not retry a signed paid request after a timeout without reconciliation.",
+    "No compliance certification, semantic correctness guarantee, DeFi yield or investment return."
+  ]
+}
