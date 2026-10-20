@@ -24,9 +24,9 @@ test("single same-owner VM1 original small buyer offer is linked once from both 
 
 test("free-first conversion cannot be described as instant paid checkout or escrow",()=>{
  assert.match(child,/HashN is <strong>an agent contact directory, not an instant checkout or escrow<\/strong>/);
- assert.match(parent,/HashN handles agent contact only—no escrow, no checkout/);
+ assert.match(parent,/HashN handles registered-agent contact only—no escrow or checkout/);
  assert.match(child,/No buyer order is claimed/);
- assert.match(parent,/no paid customer is claimed/);
+ assert.match(parent,/no paid customer is claimed/i);
  assert.match(child,/written scope\/payment\/refund/);
 });
 
@@ -55,6 +55,18 @@ test("original API x402 merchant remains distinct and no wallet signing is added
  assert.match(child,/connect-src 'none'/);
  assert.ok(!child.includes("eth_signTypedData_v4"));
  assert.ok(!child.includes("window.ethereum"));
+});
+
+
+test("human buyers are offered real original-owner no-login inbox entry instead of forced agent registration",()=>{
+ const mail="mailto:onecursor1@gmail.com?subject=5%20USDC%20Koinly%20one-source%2010-row%20review%20inquiry";
+ for(const page of [child,parent]){
+  assert.equal(page.split(mail).length-1,1);
+  assert.match(page,/human buyers/i);
+  assert.match(page,/fictional issue/i);
+ }
+ assert.match(child,/not private CSV data/);
+ assert.match(child,/separately agreed written scope\/payment\/refund/);
 });
 
 test("original free tool and manual offer are truthful; README maintains no accepted orders",()=>{
