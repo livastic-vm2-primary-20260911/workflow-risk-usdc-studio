@@ -61,4 +61,7 @@ a bounded, recognized price/reference note such as "for CAD 90", but marks
 the note IGNORED and never interprets it as fiat paid, quote asset or cost
 basis. Reversal, cancellation, second action or unsupported notes remain
 NOT_PARSED; the user must verify the original and the candidate output is
-explicitly non-Koinly-importable.
+explicitly non-Koinly-importable. The related original AI-generated DEV Community
+walkthrough is publicly available at
+https://dev.to/livasticvm2primary/why-crypto-csv-descriptions-are-not-trades-extract-candidates-without-inventing-cost-basis-2jdf
+and describes only source-verified fictional examples, not customer orders.

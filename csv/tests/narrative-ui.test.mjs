@@ -96,3 +96,12 @@ test("agent catalog discloses trailing context is ignored and never a cost basis
  assert.equal(info.notPriceOrFeeEstimation,true);
  assert.equal(info.sourcePrivateFieldsNeverDownloaded,true);
 });
+
+
+test("public narrative helper links to genuine external AI-labeled educational walkthrough",()=>{
+ const link="https://dev.to/livasticvm2primary/why-crypto-csv-descriptions-are-not-trades-extract-candidates-without-inventing-cost-basis-2jdf";
+ assert.ok(html.includes(link));
+ assert.ok(html.includes("AI-assisted technical walkthrough"));
+ assert.ok(html.includes("not a third-party endorsement"));
+ assert.ok(html.includes("proof of a paying customer"));
+});
